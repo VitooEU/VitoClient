@@ -118,8 +118,7 @@ tokio-stream = "0.1"
 deunicode = "1.6.2"
 
 [features]
-# this feature is used for production builds or when `devPath` points to the filesystem
-# DO NOT REMOVE!!
+default = ["custom-protocol"]
 custom-protocol = ["tauri/custom-protocol"]
 
 [profile.release]
