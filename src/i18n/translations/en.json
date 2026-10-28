@@ -486,7 +486,7 @@
   "welcome.panel.subtitle": "Sign in with your Microsoft account to play and to manage your skins, capes and profiles.",
   "welcome.panel.cta": "Sign in with Microsoft",
   "welcome.panel.cta_loading": "Signing in…",
-  "welcome.panel.skip": "Continue without an account",
+  "welcome.panel.skip": "Continue as Steve",
   "welcome.panel.footnote": "Without an account you can browse profiles and mods, but not launch the game.",
   "skins.editProperties": "Edit Properties",
   "skins.deleteSkin": "Delete Skin",

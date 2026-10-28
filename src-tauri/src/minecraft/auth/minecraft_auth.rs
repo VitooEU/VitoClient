@@ -1361,7 +1361,7 @@ impl MinecraftAuthStore {
                 info!("[Account Manager] No accounts found, creating default offline Vito account");
                 let default_account = Credentials {
                     id: Uuid::parse_str("c0ffee00-0000-0000-0000-000000000000").unwrap(),
-                    username: "Vito".to_string(),
+                    username: "Steve".to_string(),
                     access_token: "offline".to_string(),
                     refresh_token: String::new(),
                     expires: chrono::Utc::now() + chrono::Duration::days(3650),
@@ -1420,7 +1420,7 @@ impl MinecraftAuthStore {
 
         let default_account = Credentials {
             id: Uuid::parse_str("c0ffee00-0000-0000-0000-000000000000").unwrap(),
-            username: "Vito".to_string(),
+            username: "Steve".to_string(),
             access_token: "offline".to_string(),
             refresh_token: String::new(),
             expires: chrono::Utc::now() + chrono::Duration::days(3650),

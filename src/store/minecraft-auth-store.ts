@@ -60,8 +60,8 @@ export const useMinecraftAuthStore = create<MinecraftAuthState>((set, get) => ({
 
       const offlineVito: MinecraftAccount = {
         id: "c0ffee00-0000-0000-0000-000000000000",
-        username: "Vito",
-        minecraft_username: "Vito",
+        username: "Steve",
+        minecraft_username: "Steve",
         active: true,
         access_token: "offline",
       };
@@ -101,8 +101,8 @@ export const useMinecraftAuthStore = create<MinecraftAuthState>((set, get) => ({
       console.error("Failed to initialize accounts:", error);
       const offlineVito: MinecraftAccount = {
         id: "c0ffee00-0000-0000-0000-000000000000",
-        username: "Vito",
-        minecraft_username: "Vito",
+        username: "Steve",
+        minecraft_username: "Steve",
         active: true,
         access_token: "offline",
       };

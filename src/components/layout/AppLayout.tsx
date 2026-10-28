@@ -411,6 +411,7 @@ interface HeaderBarProps {
 function HeaderBar({ minimizeRef, maximizeRef, closeRef }: HeaderBarProps) {
   const { t } = useTranslation();
   const accentColor = useThemeStore((state) => state.accentColor);
+  const macWindowControls = useThemeStore((state) => state.macWindowControls);
   const [appVersion, setAppVersion] = useState<string | null>(null);
   const [availableUpdate, setAvailableUpdate] = useState<UpdateInfo | null>(null);
   const [isUpdating, setIsUpdating] = useState(false);
@@ -505,62 +506,111 @@ function HeaderBar({ minimizeRef, maximizeRef, closeRef }: HeaderBarProps) {
 
   return (
     <div
-      className="h-16 flex-shrink-0 liquid-glass-header flex items-center justify-between px-6 z-10"
+      className="h-16 flex-shrink-0 liquid-glass-header flex items-center justify-between px-6 z-10 relative"
       data-tauri-drag-region
     >
-      <div className="flex items-center gap-4" data-tauri-drag-region>
-        {/* Brand Logo - Ganz ganz oben links */}
-        <div className="flex items-center gap-3 select-none" data-tauri-drag-region>
-          <div className="p-1.5 rounded-xl bg-white/[0.06] border border-white/10 shadow-[0_2px_12px_rgba(0,0,0,0.4)] flex items-center justify-center hover:scale-105 transition-transform">
-            <img
-              src="/vt.png"
-              alt="VT Logo"
-              className="w-8 h-8 object-contain rounded-lg select-none pointer-events-none drop-shadow"
+      {macWindowControls ? (
+        /* macOS mode: buttons left, title centered absolutely */
+        <>
+          {/* Left: macOS buttons */}
+          <div className="flex items-center gap-2.5 group z-10">
+            {/* Close (Red) */}
+            <div
+              ref={closeRef}
+              className="w-3.5 h-3.5 rounded-full bg-[#ff5f56] hover:bg-[#ff3b30] border border-[#e0443e] flex items-center justify-center cursor-pointer transition-all hover:scale-110 active:scale-95 shadow-sm"
+              title={t('window.close')}
+            >
+              <span className="opacity-0 group-hover:opacity-100 text-[8px] font-bold text-black/70 leading-none select-none transition-opacity">✕</span>
+            </div>
+            {/* Minimize (Yellow) */}
+            <div
+              ref={minimizeRef}
+              className="w-3.5 h-3.5 rounded-full bg-[#ffbd2e] hover:bg-[#ffaa00] border border-[#dea123] flex items-center justify-center cursor-pointer transition-all hover:scale-110 active:scale-95 shadow-sm"
+              title={t('window.minimize')}
+            >
+              <span className="opacity-0 group-hover:opacity-100 text-[9px] font-bold text-black/70 leading-none select-none transition-opacity">−</span>
+            </div>
+            {/* Maximize (Green) */}
+            <div
+              ref={maximizeRef}
+              className="w-3.5 h-3.5 rounded-full bg-[#27c93f] hover:bg-[#1fb334] border border-[#1aab29] flex items-center justify-center cursor-pointer transition-all hover:scale-110 active:scale-95 shadow-sm"
+              title={t('window.maximize')}
+            >
+              <span className="opacity-0 group-hover:opacity-100 text-[8px] font-bold text-black/70 leading-none select-none transition-opacity">+</span>
+            </div>
+          </div>
+
+          {/* Center: VitoClient title */}
+          <div className="absolute left-0 right-0 flex justify-center pointer-events-none" data-tauri-drag-region>
+            <h1
+              className="font-smallcaps text-2xl tracking-wider font-bold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] pointer-events-auto"
+              data-tauri-drag-region
+            >
+              VitoClient
+            </h1>
+          </div>
+
+          {/* Right: profile */}
+          <div className="flex items-center gap-4 z-10">
+            <UserProfileBar />
+          </div>
+        </>
+      ) : (
+        /* Normal mode: logo + title left, controls right */
+        <>
+          <div className="flex items-center gap-4" data-tauri-drag-region>
+            {/* Brand Logo - Ganz oben links */}
+            <div className="flex items-center gap-3 select-none" data-tauri-drag-region>
+              <div className="p-1.5 rounded-xl bg-white/[0.06] border border-white/10 shadow-[0_2px_12px_rgba(0,0,0,0.4)] flex items-center justify-center hover:scale-105 transition-transform">
+                <img
+                  src="/v.png"
+                  alt="V Logo"
+                  className="w-8 h-8 object-contain rounded-lg select-none pointer-events-none drop-shadow"
+                />
+              </div>
+              <div className="flex flex-col items-start">
+                <div className="flex items-center gap-2.5">
+                  <h1
+                    className="font-smallcaps text-2xl tracking-wider font-bold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
+                    data-tauri-drag-region
+                  >
+                    VitoClient
+                  </h1>
+                  {availableUpdate && (
+                    <Tooltip content={isUpdating ? t('header.update.tooltip_updating') : t('header.update.tooltip_available', { version: availableUpdate.version })}>
+                      <div
+                        className={isUpdating ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}
+                        onClick={handleUpdateClick}
+                      >
+                        <Icon
+                          icon="solar:download-minimalistic-bold"
+                          className={`w-6 h-6 transition-colors ${isUpdating ? 'animate-pulse' : ''}`}
+                          style={{ color: accentColor.value }}
+                        />
+                      </div>
+                    </Tooltip>
+                  )}
+                </div>
+                <HeaderInfoCarousel version={appVersion} />
+              </div>
+            </div>
+
+            <div className="h-6 w-[1px] bg-white/10 mx-1" />
+
+            <NavigationHistory />
+          </div>
+
+          <div className="flex items-center gap-4">
+            <UserProfileBar />
+
+            <WindowControls
+              minimizeRef={minimizeRef}
+              maximizeRef={maximizeRef}
+              closeRef={closeRef}
             />
           </div>
-          <div className="flex flex-col items-start">
-            <div className="flex items-center gap-2.5">
-              <h1
-                className="font-smallcaps text-2xl tracking-wider font-bold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
-                data-tauri-drag-region
-              >
-                VitoClient
-              </h1>
-              {availableUpdate && (
-                <Tooltip content={isUpdating ? t('header.update.tooltip_updating') : t('header.update.tooltip_available', { version: availableUpdate.version })}>
-                  <div
-                    className={isUpdating ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}
-                    onClick={handleUpdateClick}
-                  >
-                    <Icon
-                      icon={isUpdating ? "solar:download-minimalistic-bold" : "solar:download-minimalistic-bold"}
-                      className={`w-6 h-6 transition-colors ${isUpdating ? 'animate-pulse' : ''}`}
-                      style={{
-                        color: accentColor.value,
-                      }}
-                    />
-                  </div>
-                </Tooltip>
-              )}
-            </div>
-            <HeaderInfoCarousel version={appVersion} />
-          </div>
-        </div>
-
-        <div className="h-6 w-[1px] bg-white/10 mx-1" />
-
-        <NavigationHistory />
-      </div>
-
-      <div className="flex items-center gap-4">
-        <UserProfileBar />
-
-        <WindowControls
-          minimizeRef={minimizeRef}
-          maximizeRef={maximizeRef}
-          closeRef={closeRef}
-        />
-      </div>
+        </>
+      )}
     </div>
   );
 }

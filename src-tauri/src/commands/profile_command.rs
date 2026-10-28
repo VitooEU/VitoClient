@@ -2872,7 +2872,7 @@ async fn resolve_credentials_for_profile(
             Ok(None) => {
                 let default_account = Credentials {
                     id: uuid::Uuid::parse_str("c0ffee00-0000-0000-0000-000000000000").unwrap(),
-                    username: "Vito".to_string(),
+                    username: "Steve".to_string(),
                     access_token: "offline".to_string(),
                     refresh_token: String::new(),
                     expires: chrono::Utc::now() + chrono::Duration::days(3650),
@@ -2889,7 +2889,7 @@ async fn resolve_credentials_for_profile(
                 log::info!("Error getting active account: {}, using offline fallback", e);
                 let default_account = Credentials {
                     id: uuid::Uuid::parse_str("c0ffee00-0000-0000-0000-000000000000").unwrap(),
-                    username: "Vito".to_string(),
+                    username: "Steve".to_string(),
                     access_token: "offline".to_string(),
                     refresh_token: String::new(),
                     expires: chrono::Utc::now() + chrono::Duration::days(3650),

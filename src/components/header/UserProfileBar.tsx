@@ -14,6 +14,7 @@ import { useSocialsModalStore } from "../../store/socials-modal-store";
 import { useFriendsStore } from "../../store/friends-store";
 import { Icon } from "@iconify/react";
 import { NotificationBell } from "./NotificationBell";
+import { useThemeStore } from "../../store/useThemeStore";
 
 interface UserProfileBarProps {
   className?: string;
@@ -29,6 +30,7 @@ export function UserProfileBar({ className }: UserProfileBarProps) {
   const [_, setMounted] = useState(false);
   const { openModal: openSocialsModal } = useSocialsModalStore();
   const { toggleSidebar: toggleFriendsSidebar } = useFriendsStore();
+  const macWindowControls = useThemeStore((state) => state.macWindowControls);
 
   useEffect(() => {
     setMounted(true);
@@ -70,7 +72,7 @@ export function UserProfileBar({ className }: UserProfileBarProps) {
     <div className={cn("relative flex items-center gap-3", className)}>
       <div className="profile-bar-container flex items-center gap-2">
         <NotificationBell />
-        <RunningInstancesIndicator />
+        {!macWindowControls && <RunningInstancesIndicator />}
 
         <div ref={profileButtonRef}>
           <CurrentAccountDisplay
