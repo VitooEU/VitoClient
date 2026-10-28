@@ -570,6 +570,10 @@ export function App() {
 
   const handleNavChange = async (tabId: string) => {
     if (tabId === "settings") {
+      // Friends-Sidebar schließen bevor Settings öffnet
+      const { isSidebarOpen, toggleSidebar } = (await import("./store/friends-store")).useFriendsStore.getState();
+      if (isSidebarOpen) toggleSidebar();
+
       useSettingsModalStore.getState().open();
       if (analyticsConsent.decision === 'accepted') {
         trackEvent('sidebar_tab_clicked', { tab_name: 'settings' }).catch(console.error);

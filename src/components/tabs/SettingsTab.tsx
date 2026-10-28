@@ -10,7 +10,6 @@ import { useSettingsModalStore } from "../../store/settings-modal-store";
 import { cn } from "../../lib/utils";
 import { toast } from "react-hot-toast";
 import { ActionButton } from ".././ui/ActionButton";
-import { Modal } from ".././ui/Modal";
 import { SearchWithFilters } from ".././ui/SearchWithFilters";
 import { SettingsSearchContext } from ".././ui/settings/SettingsSearchContext";
 import { openLauncherDirectory } from "../../services/tauri-service";
@@ -334,38 +333,43 @@ export function SettingsTab({ onClose }: SettingsTabProps) {
   };
 
   return (
-    <Modal
-      title={onlyTab ? tabConfig[0]?.label ?? t("nav.settings") : t("nav.settings")}
-      titleIcon={
-        <Icon
-          icon={onlyTab ? tabConfig[0]?.icon ?? "solar:settings-bold" : "solar:settings-bold"}
-          className="w-8 h-8"
-        />
-      }
-      onClose={onClose}
-      width="xl"
-      className="!max-w-6xl h-[85vh] min-h-[600px] flex flex-col"
-      headerActions={
-        <ActionButton
-          id="open-directory"
-          label={t("settings.open_directory")}
-          icon="solar:folder-bold"
-          variant="highlight"
-          tooltip={t("settings.open_directory.tooltip")}
-          size="sm"
-          onClick={async () => {
-            try {
-              await openLauncherDirectory();
-            } catch (err) {
-              console.error("Failed to open launcher directory:", err);
-              toast.error(t("settings.open_directory.error", { error: parseErrorMessage(err) }));
-            }
-          }}
-        />
-      }
-    >
-      <div className="flex h-full p-4 gap-2">
-        <div className="w-64 flex flex-col flex-shrink-0">
+    <div className="h-full flex flex-col bg-transparent">
+      {/* Settings Header */}
+      <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 flex-shrink-0">
+        <div className="flex items-center gap-3">
+          <Icon icon={onlyTab ? tabConfig[0]?.icon ?? "solar:settings-bold" : "solar:settings-bold"} className="w-6 h-6 text-white/80" />
+          <h2 className="text-lg font-smallcaps text-white">
+            {onlyTab ? tabConfig[0]?.label ?? t("nav.settings") : t("nav.settings")}
+          </h2>
+        </div>
+        <div className="flex items-center gap-2">
+          <ActionButton
+            id="open-directory"
+            label={t("settings.open_directory")}
+            icon="solar:folder-bold"
+            variant="highlight"
+            tooltip={t("settings.open_directory.tooltip")}
+            size="sm"
+            onClick={async () => {
+              try {
+                await openLauncherDirectory();
+              } catch (err) {
+                console.error("Failed to open launcher directory:", err);
+                toast.error(t("settings.open_directory.error", { error: parseErrorMessage(err) }));
+              }
+            }}
+          />
+          <button
+            onClick={onClose}
+            className="w-8 h-8 flex items-center justify-center rounded-lg text-white/60 hover:text-white hover:bg-white/10 transition-colors"
+          >
+            <Icon icon="solar:close-circle-bold" className="w-5 h-5" />
+          </button>
+        </div>
+      </div>
+
+      <div className="flex flex-1 p-4 gap-2 overflow-hidden">
+        <div className="w-56 flex flex-col flex-shrink-0">
           <div className="px-1 pb-3">
             <SearchWithFilters
               placeholder={t("common.search")}
@@ -453,6 +457,6 @@ export function SettingsTab({ onClose }: SettingsTabProps) {
           </div>
         </div>
       </div>
-    </Modal>
+    </div>
   );
 }

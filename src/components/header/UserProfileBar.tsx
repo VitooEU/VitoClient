@@ -72,7 +72,7 @@ export function UserProfileBar({ className }: UserProfileBarProps) {
     <div className={cn("relative flex items-center gap-3", className)}>
       <div className="profile-bar-container flex items-center gap-2">
         <NotificationBell />
-        {!macWindowControls && <RunningInstancesIndicator />}
+        {/* RunningInstancesIndicator entfernt */}
 
         <div ref={profileButtonRef}>
           <CurrentAccountDisplay
@@ -83,7 +83,15 @@ export function UserProfileBar({ className }: UserProfileBarProps) {
 
         <IconButton
           icon={<Icon icon="solar:users-group-rounded-linear" className="w-5 h-5" />}
-          onClick={toggleFriendsSidebar}
+          onClick={() => {
+            // Settings schließen wenn Friends öffnet
+            import("../../store/settings-modal-store").then(({ useSettingsModalStore }) => {
+              if (useSettingsModalStore.getState().isOpen) {
+                useSettingsModalStore.getState().close();
+              }
+            });
+            toggleFriendsSidebar();
+          }}
           variant="flat"
           size="sm"
           aria-label={t('header.toggle_friends')}

@@ -96,7 +96,7 @@ export function AppLayout({
     { id: "settings", icon: "solar:settings-bold", label: t("nav.settings"), isAction: true },
   ];
   const { qualityLevel } = useQualitySettingsStore();
-  const { isBackgroundAnimationEnabled, accentColor: themeAccentColor, accentColor } = useThemeStore();
+  const { isBackgroundAnimationEnabled, accentColor: themeAccentColor, accentColor, borderRadius } = useThemeStore();
   const { isEnabled: isSnowEnabled } = useSnowEffectStore();
   const { selectedTheme, isThemeActive } = useLauncherTheme();
   const { connectWebSocket, loadCurrentUser, loadFriends } = useFriendsStore();
@@ -343,6 +343,9 @@ export function AppLayout({
         backgroundImage: isCustomMediaVisible 
           ? `linear-gradient(to bottom right, ${getComplementaryBackgroundWithAlpha(0.3)}, rgba(0,0,0,0.5))`
           : `linear-gradient(135deg, rgba(16, 20, 30, 0.94) 0%, rgba(8, 10, 16, 0.97) 100%)`,
+        borderRadius: borderRadius > 0 ? `${borderRadius}px` : undefined,
+        transform: "translateZ(0)",
+        willChange: "transform",
       }}
     >
       <BorderGlowEffects accentColor={themeAccentColor.value} />
@@ -360,7 +363,15 @@ export function AppLayout({
         {shouldShowEffects && isSnowEnabled && <Snowfall />}
 
         <div className="relative z-10 flex-1 overflow-hidden custom-scrollbar pb-16">
-          {children}
+          <div
+            key={activeTab}
+            className="h-full w-full"
+            style={{
+              animation: "tabFadeIn 0.22s cubic-bezier(0.16,1,0.3,1) both",
+            }}
+          >
+            {children}
+          </div>
         </div>
 
         {/* Navigation Leiste - Unten in der Mitte */}

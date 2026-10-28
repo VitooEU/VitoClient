@@ -21,7 +21,7 @@ export function AppearanceTab() {
   const { t } = useTranslation();
   const kw = useSettingsKeywords();
   const { saving } = useSettingsConfig();
-  const { staticBackground, toggleStaticBackground, toggleBackgroundAnimation, showNavLabels, toggleNavLabels, macWindowControls, toggleMacWindowControls } =
+  const { staticBackground, toggleStaticBackground, toggleBackgroundAnimation, showNavLabels, toggleNavLabels, macWindowControls, toggleMacWindowControls, borderRadius, setBorderRadius } =
     useThemeStore();
   const { 
     currentEffect, setCurrentEffect, 
@@ -102,6 +102,21 @@ export function AppearanceTab() {
         </SettingRow>
         <SettingRow label="macOS Fenster-Buttons" description="Zeigt die typischen 3 macOS-Buttons (Rot, Gelb, Grün) in der Titelleiste anstelle von Windows/Linux-Buttons" searchKeywords={kw("macos", "mac", "buttons", "fenster", "controls", "titlebar", "apple")}>
           <ToggleSwitch checked={macWindowControls} onChange={toggleMacWindowControls} size="md" />
+        </SettingRow>
+        <SettingRow label="Fenster-Abrundung (Border Radius)" description="Wie rund die Ecken der App sind. 0 = eckig, 20 = sehr rund." searchKeywords={kw("border", "radius", "rund", "ecken", "corners", "abrundung")}>
+          <div className="flex items-center gap-3">
+            <span className="text-xs text-white/60 font-minecraft">Eckig</span>
+            <input
+              type="range"
+              min="0"
+              max="20"
+              step="1"
+              value={borderRadius}
+              onChange={(e) => setBorderRadius(parseInt(e.target.value))}
+              className="w-28 h-2 bg-white/20 rounded-lg appearance-none cursor-pointer accent-white"
+            />
+            <span className="text-xs text-white/60 font-minecraft">Rund ({borderRadius}px)</span>
+          </div>
         </SettingRow>
         <SettingRow label={t("settings.background.snow")} searchKeywords={kw("settings.background.snow", "snow", "schnee", "winter")} disabled={saving}>
           <SnowEffectToggle showLabel={false} size="md" disabled={saving} />

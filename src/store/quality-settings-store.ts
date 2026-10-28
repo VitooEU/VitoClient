@@ -13,7 +13,7 @@ interface QualitySettingsState {
 export const useQualitySettingsStore = create<QualitySettingsState>()(
   persist(
     (set) => ({
-      qualityLevel: "medium",
+      qualityLevel: "low",  // Default: niedrig für bessere FPS auf Linux/NVIDIA
       setQualityLevel: (level) => set({ qualityLevel: level }),
       cosmeticRenderer3d: true,
       setCosmeticRenderer3d: (enabled) => set({ cosmeticRenderer3d: enabled }),

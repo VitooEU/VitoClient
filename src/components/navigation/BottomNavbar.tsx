@@ -66,10 +66,10 @@ export function BottomNavbar({
               key={item.id}
               onClick={() => handleItemClick(item.id, item.isAction, item.action)}
               className={cn(
-                "relative group flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-medium transition-all duration-200 select-none",
+                "relative group flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-medium transition-all duration-300 ease-out select-none active:scale-95",
                 isActive
-                  ? "text-white shadow-[0_2px_12px_rgba(0,0,0,0.3)]"
-                  : "text-white/60 hover:text-white hover:bg-white/[0.04]",
+                  ? "text-white shadow-[0_2px_12px_rgba(0,0,0,0.3)] scale-105"
+                  : "text-white/60 hover:text-white hover:bg-white/[0.06] hover:scale-102",
               )}
               style={
                 isActive
@@ -86,16 +86,16 @@ export function BottomNavbar({
               <Icon
                 icon={item.icon}
                 className={cn(
-                  "w-5 h-5 transition-transform duration-200 group-hover:scale-110",
-                  isActive ? "scale-105" : "",
+                  "w-5 h-5 transition-transform duration-300 ease-out",
+                  isActive ? "scale-110" : "group-hover:scale-110",
                 )}
                 style={isActive ? { color: accentColor.value } : undefined}
               />
               {showNavLabels && (
                 <span
                   className={cn(
-                    "font-smallcaps tracking-wide text-xs",
-                    isActive ? "font-bold text-white" : "text-white/70",
+                    "font-smallcaps tracking-wide text-xs transition-all duration-200",
+                    isActive ? "font-bold text-white scale-105" : "text-white/70",
                   )}
                 >
                   {item.label}
@@ -103,7 +103,7 @@ export function BottomNavbar({
               )}
               {isActive && (
                 <span
-                  className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-4 h-0.5 rounded-full"
+                  className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-4 h-0.5 rounded-full transition-all duration-300 animate-pulse"
                   style={{ backgroundColor: accentColor.value }}
                 />
               )}
