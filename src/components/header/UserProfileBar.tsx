@@ -71,16 +71,6 @@ export function UserProfileBar({ className }: UserProfileBarProps) {
   return (
     <div className={cn("relative flex items-center gap-3", className)}>
       <div className="profile-bar-container flex items-center gap-2">
-        <NotificationBell />
-        {/* RunningInstancesIndicator entfernt */}
-
-        <div ref={profileButtonRef}>
-          <CurrentAccountDisplay
-            onClick={toggleAccountDropdown}
-            className="h-10"
-          />
-        </div>
-
         <IconButton
           icon={<Icon icon="solar:users-group-rounded-linear" className="w-5 h-5" />}
           onClick={() => {
@@ -97,28 +87,7 @@ export function UserProfileBar({ className }: UserProfileBarProps) {
           aria-label={t('header.toggle_friends')}
           className="text-white/70 hover:text-white h-10 w-10"
         />
-
-        <IconButton
-          icon={<Icon icon="solar:link-linear" className="w-5 h-5" />}
-          onClick={openSocialsModal}
-          variant="flat"
-          size="sm"
-          aria-label={t('header.open_socials')}
-          className="text-white/70 hover:text-white h-10 w-10"
-        />
       </div>
-
-  
-
-      <Dropdown
-        ref={dropdownRef}
-        isOpen={isAccountDropdownOpen}
-        onClose={handleCloseDropdown}
-        triggerRef={profileButtonRef}
-        width={300}
-      >
-        <MinecraftAccountManager onClose={handleCloseDropdown} isInDropdown />
-      </Dropdown>
     </div>
   );
 }

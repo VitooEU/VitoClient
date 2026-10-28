@@ -36,7 +36,7 @@ interface BackgroundEffectState {
 export const useBackgroundEffectStore = create<BackgroundEffectState>()(
   persist(
     (set) => ({
-      currentEffect: BACKGROUND_EFFECTS.RETRO_GRID,
+      currentEffect: BACKGROUND_EFFECTS.PLAIN_BACKGROUND,
       customMediaUrl: null,
       customMediaType: null,
       customMediaOpacity: 0.25,

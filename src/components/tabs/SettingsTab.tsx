@@ -18,6 +18,7 @@ import { GeneralTab } from "./settings/GeneralTab";
 import { AppearanceTab } from "./settings/AppearanceTab";
 import { AdvancedTab } from "./settings/AdvancedTab";
 import { ClipsTab } from "./settings/ClipsTab";
+import { AccountsSettingsTab } from "./settings/AccountsSettingsTab";
 import { SettingsConfigProvider } from "./settings/settings-context";
 import { useTranslation } from "react-i18next";
 import { setDiscordState } from "../../utils/discordRpc";
@@ -25,9 +26,10 @@ import { parseErrorMessage } from "../../utils/error-utils";
 import { useClipSettingsSync } from "../../hooks/useClipSettingsSync";
 import { isMacOS, supportsClips } from "../../utils/platform";
 
-type SettingsTabId = "general" | "appearance" | "clips" | "advanced" | "debug";
+type SettingsTabId = "accounts" | "general" | "appearance" | "clips" | "advanced" | "debug";
 
 const SETTINGS_TAB_IDS: SettingsTabId[] = [
+  "accounts",
   "general",
   "appearance",
   "clips",
@@ -51,7 +53,7 @@ export function SettingsTab({ onClose }: SettingsTabProps) {
   const [activeTab, setActiveTab] = useState<SettingsTabId>(() =>
     SETTINGS_TAB_IDS.includes(requested as SettingsTabId)
       ? (requested as SettingsTabId)
-      : "general",
+      : "accounts",
   );
 
   const onlyTab = useSettingsModalStore.getState().only
@@ -77,6 +79,9 @@ export function SettingsTab({ onClose }: SettingsTabProps) {
 
 
   const sectionDefs: Record<SettingsTabId, { id: string; label: string }[]> = {
+    accounts: [
+      { id: "accounts-list", label: "Accounts" },
+    ],
     general: [
       { id: "language", label: t("settings.language") },
       { id: "accent", label: t("settings.accent_color.title") },
@@ -115,6 +120,7 @@ export function SettingsTab({ onClose }: SettingsTabProps) {
     icon: string;
     children?: { id: string; label: string }[];
   }[] = [
+    { id: "accounts", label: "Accounts", icon: "solar:user-bold", children: sectionDefs.accounts },
     { id: "general", label: t("settings.tabs.general"), icon: "solar:settings-bold", children: sectionDefs.general },
     { id: "appearance", label: t("settings.tabs.appearance"), icon: "solar:palette-bold", children: sectionDefs.appearance },
     ...(supportsClips()
@@ -308,6 +314,7 @@ export function SettingsTab({ onClose }: SettingsTabProps) {
     }
 
     const bodyOf: Partial<Record<SettingsTabId, ReactNode>> = {
+      accounts: <AccountsSettingsTab />,
       general: <GeneralTab />,
       appearance: <AppearanceTab />,
       clips: <ClipsTab />,

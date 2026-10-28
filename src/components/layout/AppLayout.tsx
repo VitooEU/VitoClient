@@ -335,7 +335,7 @@ export function AppLayout({
   return (
     <div
       ref={launcherRef}
-      className="h-screen w-full liquid-glass-shell overflow-hidden relative flex flex-col border border-white/5 shadow-[0_8px_40px_rgba(0,0,0,0.8)]"
+      className="h-screen w-full liquid-glass-shell overflow-hidden relative flex flex-col border border-white/5 shadow-[0_8px_40px_rgba(0,0,0,0.8)] rounded-2xl"
       style={{
         backgroundColor: "#111215",
         backgroundSize: "cover",
@@ -343,7 +343,7 @@ export function AppLayout({
         backgroundImage: isCustomMediaVisible 
           ? `linear-gradient(to bottom right, rgba(20,20,25,0.4), rgba(10,10,12,0.8))`
           : `linear-gradient(180deg, #14151a 0%, #0d0e11 100%)`,
-        borderRadius: borderRadius > 0 ? `${borderRadius}px` : undefined,
+        borderRadius: borderRadius > 0 ? `${borderRadius}px` : "16px",
         transform: "translateZ(0)",
         willChange: "transform",
       }}

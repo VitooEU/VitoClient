@@ -112,7 +112,7 @@ export function App() {
   }, [loadLegalStatus, language, acceptedLegacyTerms]);
 
   const ready = accountsLoaded && legalChecked;
-  const showWelcome = false; // Offline Steve account always available
+  const showWelcome = ready && !activeAccount && !welcomeSkipped;
 
   const activeTab = location.pathname.substring(1) || "play";
 
