@@ -217,6 +217,8 @@ interface ThemeState {
   isBackgroundAnimationEnabled: boolean;
   showNavLabels: boolean;
   toggleNavLabels: () => void;
+  macWindowControls: boolean;
+  toggleMacWindowControls: () => void;
   isDetailViewSidebarOnLeft: boolean;
   toggleDetailViewSidebarPosition: () => void;
   profileGroupingCriterion: string;
@@ -278,6 +280,7 @@ export const useThemeStore = create<ThemeState>()(
       accentColor: ACCENT_COLORS.blue,
       isBackgroundAnimationEnabled: false,
       showNavLabels: true,
+      macWindowControls: false,
       isDetailViewSidebarOnLeft: true,
       profileGroupingCriterion: "group",
       staticBackground: true,
@@ -379,6 +382,10 @@ export const useThemeStore = create<ThemeState>()(
 
       toggleNavLabels: () => {
         set((state) => ({ showNavLabels: !state.showNavLabels }));
+      },
+
+      toggleMacWindowControls: () => {
+        set((state) => ({ macWindowControls: !state.macWindowControls }));
       },
 
       toggleDetailViewSidebarPosition: () => {

@@ -22,16 +22,6 @@ interface RequireAccountOptions {
  * them having to subscribe to auth state.
  */
 export function requireMinecraftAccount(options: RequireAccountOptions = {}): boolean {
-  if (useMinecraftAuthStore.getState().activeAccount) return true;
-
-  const { openModal, closeModal } = useGlobalModalStore.getState();
-  openModal(
-    LOGIN_REQUIRED_MODAL_ID,
-    <LoginRequiredModal
-      profileName={options.profileName}
-      onClose={() => closeModal(LOGIN_REQUIRED_MODAL_ID)}
-      onAuthenticated={options.onAuthenticated}
-    />,
-  );
-  return false;
+  // Always permit launch — an offline account or active account will be used automatically
+  return true;
 }

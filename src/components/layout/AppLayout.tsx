@@ -5,7 +5,7 @@ import { type ReactNode, useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { Icon } from "@iconify/react";
 
-import { VerticalNavbar } from ".././navigation/VerticalNavbar";
+import { BottomNavbar } from "../navigation/BottomNavbar";
 import { UserProfileBar } from ".././header/UserProfileBar";
 import { NavigationHistory } from "../ui/NavigationHistory";
 import { useThemeStore } from "../../store/useThemeStore";
@@ -335,7 +335,7 @@ export function AppLayout({
   return (
     <div
       ref={launcherRef}
-      className="h-screen w-full liquid-glass-shell overflow-hidden relative flex border border-white/10 shadow-[0_8px_40px_rgba(0,0,0,0.6)]"
+      className="h-screen w-full liquid-glass-shell overflow-hidden relative flex flex-col border border-white/10 shadow-[0_8px_40px_rgba(0,0,0,0.6)]"
       style={{
         backgroundColor: backgroundColor,
         backgroundSize: "cover",
@@ -347,30 +347,29 @@ export function AppLayout({
     >
       <BorderGlowEffects accentColor={themeAccentColor.value} />
 
-      <VerticalNavbar
-        items={navItems}
-        activeItem={activeTab}
-        onItemClick={onNavChange}
-        className="h-full z-10"
-        version={appConfig.version}
+      <HeaderBar
+        minimizeRef={minimizeRef}
+        maximizeRef={maximizeRef}
+        closeRef={closeRef}
       />
 
-      <div className="flex-1 flex flex-col h-full overflow-hidden">
-        <HeaderBar
-          minimizeRef={minimizeRef}
-          maximizeRef={maximizeRef}
-          closeRef={closeRef}
-        />
+      <div className="flex-1 relative overflow-hidden flex flex-col">
+        <CustomMediaBackground activeTab={activeTab} />
+        {shouldShowEffects && renderBackgroundEffect()}
+        {/* Snow overlay - independent of theme/background */}
+        {shouldShowEffects && isSnowEnabled && <Snowfall />}
 
-        <div className="flex-1 relative overflow-hidden">
-          <CustomMediaBackground activeTab={activeTab} />
-          {shouldShowEffects && renderBackgroundEffect()}
-          {/* Snow overlay - independent of theme/background */}
-          {shouldShowEffects && isSnowEnabled && <Snowfall />}
+        <div className="relative z-10 flex-1 overflow-hidden custom-scrollbar pb-16">
+          {children}
+        </div>
 
-          <div className="relative z-10 h-full overflow-hidden custom-scrollbar">
-            {children}
-          </div>
+        {/* Navigation Leiste - Unten in der Mitte */}
+        <div className="absolute bottom-3 left-0 right-0 flex justify-center z-30 pointer-events-none">
+          <BottomNavbar
+            items={navItems}
+            activeItem={activeTab}
+            onItemClick={onNavChange}
+          />
         </div>
       </div>
       {/* Global Modals Portal */}
@@ -506,14 +505,13 @@ function HeaderBar({ minimizeRef, maximizeRef, closeRef }: HeaderBarProps) {
 
   return (
     <div
-      className="h-20 flex-shrink-0 liquid-glass-header flex items-center justify-between px-8 z-10"
+      className="h-16 flex-shrink-0 liquid-glass-header flex items-center justify-between px-6 z-10"
       data-tauri-drag-region
     >
       <div className="flex items-center gap-4" data-tauri-drag-region>
-        <NavigationHistory />
-
-        <div className="flex items-center gap-3" data-tauri-drag-region>
-          <div className="p-1 rounded-xl bg-white/[0.06] border border-white/10 shadow-[0_2px_12px_rgba(0,0,0,0.4)] flex items-center justify-center">
+        {/* Brand Logo - Ganz ganz oben links */}
+        <div className="flex items-center gap-3 select-none" data-tauri-drag-region>
+          <div className="p-1.5 rounded-xl bg-white/[0.06] border border-white/10 shadow-[0_2px_12px_rgba(0,0,0,0.4)] flex items-center justify-center hover:scale-105 transition-transform">
             <img
               src="/vt.png"
               alt="VT Logo"
@@ -548,6 +546,10 @@ function HeaderBar({ minimizeRef, maximizeRef, closeRef }: HeaderBarProps) {
             <HeaderInfoCarousel version={appVersion} />
           </div>
         </div>
+
+        <div className="h-6 w-[1px] bg-white/10 mx-1" />
+
+        <NavigationHistory />
       </div>
 
       <div className="flex items-center gap-4">
@@ -575,6 +577,39 @@ function WindowControls({
   closeRef,
 }: WindowControlsProps) {
   const { t } = useTranslation();
+  const macWindowControls = useThemeStore((state) => state.macWindowControls);
+
+  if (macWindowControls) {
+    return (
+      <div className="flex items-center gap-2.5 ml-4 group">
+        {/* macOS Close (Red) */}
+        <div
+          ref={closeRef}
+          className="w-3.5 h-3.5 rounded-full bg-[#ff5f56] hover:bg-[#ff3b30] border border-[#e0443e] flex items-center justify-center cursor-pointer transition-all hover:scale-110 active:scale-95 shadow-sm"
+          title={t('window.close')}
+        >
+          <span className="opacity-0 group-hover:opacity-100 text-[8px] font-bold text-black/70 leading-none select-none transition-opacity">✕</span>
+        </div>
+        {/* macOS Minimize (Yellow) */}
+        <div
+          ref={minimizeRef}
+          className="w-3.5 h-3.5 rounded-full bg-[#ffbd2e] hover:bg-[#ffaa00] border border-[#dea123] flex items-center justify-center cursor-pointer transition-all hover:scale-110 active:scale-95 shadow-sm"
+          title={t('window.minimize')}
+        >
+          <span className="opacity-0 group-hover:opacity-100 text-[9px] font-bold text-black/70 leading-none select-none transition-opacity">−</span>
+        </div>
+        {/* macOS Maximize (Green) */}
+        <div
+          ref={maximizeRef}
+          className="w-3.5 h-3.5 rounded-full bg-[#27c93f] hover:bg-[#1fb334] border border-[#1aab29] flex items-center justify-center cursor-pointer transition-all hover:scale-110 active:scale-95 shadow-sm"
+          title={t('window.maximize')}
+        >
+          <span className="opacity-0 group-hover:opacity-100 text-[8px] font-bold text-black/70 leading-none select-none transition-opacity">+</span>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex items-center gap-3 ml-4">
       <div

@@ -5,7 +5,7 @@ use crate::integrations::modrinth::ModrinthVersion;
 use crate::integrations::mrpack;
 use crate::integrations::vito_packs::VitoModpacksConfig;
 use crate::integrations::vito_versions::VitoVersionsConfig;
-use crate::minecraft::auth::minecraft_auth::Credentials;
+use crate::minecraft::auth::minecraft_auth::{Credentials, VitoCredentials};
 use crate::minecraft::installer;
 use crate::minecraft::modloader::{ModloaderFactory, ResolvedLoaderVersion};
 use crate::state::event_state::{EventPayload, EventType};
@@ -2869,10 +2869,38 @@ async fn resolve_credentials_for_profile(
     let get_active_account = || async {
         match state.minecraft_account_manager_v2.get_active_account().await {
             Ok(Some(creds)) => Ok(Some(creds)),
-            Ok(None) => Err(CommandError::from(AppError::NoCredentialsError)),
+            Ok(None) => {
+                let default_account = Credentials {
+                    id: uuid::Uuid::parse_str("c0ffee00-0000-0000-0000-000000000000").unwrap(),
+                    username: "Vito".to_string(),
+                    access_token: "offline".to_string(),
+                    refresh_token: String::new(),
+                    expires: chrono::Utc::now() + chrono::Duration::days(3650),
+                    vito_credentials: VitoCredentials { production: None, experimental: None },
+                    active: true,
+                    ignore_child_protection_warning: true,
+                    auth_flow: None,
+                    mc_access_token_expires: None,
+                    twitch_token: None,
+                };
+                Ok(Some(default_account))
+            }
             Err(e) => {
-                log::info!("Error getting active account: {}", e);
-                Err(CommandError::from(AppError::NoCredentialsError))
+                log::info!("Error getting active account: {}, using offline fallback", e);
+                let default_account = Credentials {
+                    id: uuid::Uuid::parse_str("c0ffee00-0000-0000-0000-000000000000").unwrap(),
+                    username: "Vito".to_string(),
+                    access_token: "offline".to_string(),
+                    refresh_token: String::new(),
+                    expires: chrono::Utc::now() + chrono::Duration::days(3650),
+                    vito_credentials: VitoCredentials { production: None, experimental: None },
+                    active: true,
+                    ignore_child_protection_warning: true,
+                    auth_flow: None,
+                    mc_access_token_expires: None,
+                    twitch_token: None,
+                };
+                Ok(Some(default_account))
             }
         }
     };

@@ -58,19 +58,27 @@ export const useMinecraftAuthStore = create<MinecraftAuthState>((set, get) => ({
 
       const accounts = await MinecraftAuthService.getAccounts();
 
-      // Commit the (cached) account list first so a failing active-account
-      // refresh — e.g. a Mojang auth outage / HTTP 429 — can never wipe the
-      // whole list. The cached `active` flag gives us a fallback selection.
-      const fallbackActive = accounts.find((a) => a.active) ?? null;
+      const offlineVito: MinecraftAccount = {
+        id: "c0ffee00-0000-0000-0000-000000000000",
+        username: "Vito",
+        minecraft_username: "Vito",
+        active: true,
+        access_token: "offline",
+      };
+
+      const fallbackActive = accounts.find((a) => a.active) ?? (accounts.length > 0 ? accounts[0] : offlineVito);
+      const safeAccounts = accounts.length > 0 ? accounts : [offlineVito];
+
       set({
-        accounts,
+        accounts: safeAccounts,
         activeAccount: fallbackActive,
         accountsLoaded: true,
       });
 
       let activeAccount = fallbackActive;
       try {
-        activeAccount = await MinecraftAuthService.getActiveAccount();
+        const backendActive = await MinecraftAuthService.getActiveAccount();
+        if (backendActive) activeAccount = backendActive;
       } catch (refreshError) {
         console.warn(
           "Active account refresh failed, keeping cached account:",
@@ -78,7 +86,7 @@ export const useMinecraftAuthStore = create<MinecraftAuthState>((set, get) => ({
         );
       }
 
-      const updatedAccounts = accounts.map((account) => ({
+      const updatedAccounts = safeAccounts.map((account) => ({
         ...account,
         active: activeAccount ? account.id === activeAccount.id : false,
       }));
@@ -91,12 +99,20 @@ export const useMinecraftAuthStore = create<MinecraftAuthState>((set, get) => ({
       setMojangTraits(activeAccount);
     } catch (error) {
       console.error("Failed to initialize accounts:", error);
+      const offlineVito: MinecraftAccount = {
+        id: "c0ffee00-0000-0000-0000-000000000000",
+        username: "Vito",
+        minecraft_username: "Vito",
+        active: true,
+        access_token: "offline",
+      };
       set({
-        error: i18n.t('auth.errors.load_accounts', { error: parseErrorMessage(error) }),
+        accounts: [offlineVito],
+        activeAccount: offlineVito,
         isLoading: false,
         accountsLoaded: true,
       });
-      setMojangTraits(null);
+      setMojangTraits(offlineVito);
     }
   },
 

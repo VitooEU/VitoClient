@@ -24,7 +24,7 @@ export function Logo({ size = "md", className, onClick }: LogoProps) {
       onClick={onClick}
     >
       <img
-        src="/logo.png"
+        src="/vt.png"
         alt="Vito Logo"
         className="w-full h-full object-contain"
       />

@@ -1358,8 +1358,25 @@ impl MinecraftAuthStore {
                 debug!("[Account Manager] Successfully saved changes");
                 Ok(Some(account))
             } else {
-                info!("[Account Manager] No accounts found at all");
-                Ok(None)
+                info!("[Account Manager] No accounts found, creating default offline Vito account");
+                let default_account = Credentials {
+                    id: Uuid::parse_str("c0ffee00-0000-0000-0000-000000000000").unwrap(),
+                    username: "Vito".to_string(),
+                    access_token: "offline".to_string(),
+                    refresh_token: String::new(),
+                    expires: chrono::Utc::now() + chrono::Duration::days(3650),
+                    vito_credentials: VitoCredentials { production: None, experimental: None },
+                    active: true,
+                    ignore_child_protection_warning: true,
+                    auth_flow: None,
+                    mc_access_token_expires: None,
+                    twitch_token: None,
+                };
+                let mut accounts = self.accounts.write().await;
+                accounts.push(default_account.clone());
+                drop(accounts);
+                let _ = self.save().await;
+                Ok(Some(default_account))
             }
         }
     }
@@ -1394,15 +1411,34 @@ impl MinecraftAuthStore {
     pub async fn get_all_accounts(&self) -> Result<Vec<Credentials>> {
         trace!("[Account Manager] Starting get_all_accounts operation");
 
-        trace!("[Account Manager] Acquiring read lock");
-        let accounts = self.accounts.read().await;
-        trace!("[Account Manager] Successfully acquired read lock");
+        {
+            let accounts = self.accounts.read().await;
+            if !accounts.is_empty() {
+                return Ok(accounts.clone());
+            }
+        }
 
-        trace!("[Account Manager] Found {} accounts", accounts.len());
-        let accounts_clone = accounts.clone();
-
-        trace!("[Account Manager] Returning all accounts");
-        Ok(accounts_clone)
+        let default_account = Credentials {
+            id: Uuid::parse_str("c0ffee00-0000-0000-0000-000000000000").unwrap(),
+            username: "Vito".to_string(),
+            access_token: "offline".to_string(),
+            refresh_token: String::new(),
+            expires: chrono::Utc::now() + chrono::Duration::days(3650),
+            vito_credentials: VitoCredentials { production: None, experimental: None },
+            active: true,
+            ignore_child_protection_warning: true,
+            auth_flow: None,
+            mc_access_token_expires: None,
+            twitch_token: None,
+        };
+        let mut accounts = self.accounts.write().await;
+        if accounts.is_empty() {
+            accounts.push(default_account.clone());
+            drop(accounts);
+            let _ = self.save().await;
+            return Ok(vec![default_account]);
+        }
+        Ok(accounts.clone())
     }
 
     pub async fn set_active_account(&self, account_id: Uuid) -> Result<()> {
