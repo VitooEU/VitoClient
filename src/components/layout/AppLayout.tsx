@@ -335,16 +335,14 @@ export function AppLayout({
   return (
     <div
       ref={launcherRef}
-      className="h-screen w-full bg-black/50 backdrop-blur-lg border-2 overflow-hidden relative flex shadow-[0_0_25px_rgba(0,0,0,0.4)]"
+      className="h-screen w-full liquid-glass-shell overflow-hidden relative flex border border-white/10 shadow-[0_8px_40px_rgba(0,0,0,0.6)]"
       style={{
         backgroundColor: backgroundColor,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundImage: isCustomMediaVisible 
           ? `linear-gradient(to bottom right, ${getComplementaryBackgroundWithAlpha(0.3)}, rgba(0,0,0,0.5))`
-          : `linear-gradient(to bottom right, ${backgroundColor}, rgba(0,0,0,0.9))`,
-        borderColor: `${themeAccentColor.value}30`,
-        boxShadow: `0 0 15px ${themeAccentColor.value}30, inset 0 0 10px ${themeAccentColor.value}20`,
+          : `linear-gradient(135deg, rgba(16, 20, 30, 0.94) 0%, rgba(8, 10, 16, 0.97) 100%)`,
       }}
     >
       <BorderGlowEffects accentColor={themeAccentColor.value} />
@@ -353,7 +351,7 @@ export function AppLayout({
         items={navItems}
         activeItem={activeTab}
         onItemClick={onNavChange}
-        className="h-full border-r-2 z-10"
+        className="h-full z-10"
         version={appConfig.version}
       />
 
@@ -390,27 +388,15 @@ function BorderGlowEffects({ accentColor }: { accentColor: string }) {
   return (
     <>
       <div
-        className="absolute top-0 left-0 right-0 h-[2px]"
+        className="absolute top-0 left-0 right-0 h-[1px] z-50 pointer-events-none"
         style={{
-          background: `linear-gradient(to right, transparent, ${accentColor}70, transparent)`,
+          background: `linear-gradient(90deg, transparent 5%, rgba(255, 255, 255, 0.22) 50%, transparent 95%)`,
         }}
       ></div>
       <div
-        className="absolute bottom-0 left-0 right-0 h-[2px]"
+        className="absolute bottom-0 left-0 right-0 h-[1px] z-50 pointer-events-none"
         style={{
-          background: `linear-gradient(to right, transparent, ${accentColor}70, transparent)`,
-        }}
-      ></div>
-      <div
-        className="absolute top-0 bottom-0 left-0 w-[2px]"
-        style={{
-          background: `linear-gradient(to bottom, transparent, ${accentColor}70, transparent)`,
-        }}
-      ></div>
-      <div
-        className="absolute top-0 bottom-0 right-0 w-[2px]"
-        style={{
-          background: `linear-gradient(to bottom, transparent, ${accentColor}70, transparent)`,
+          background: `linear-gradient(90deg, transparent 10%, rgba(255, 255, 255, 0.06) 50%, transparent 90%)`,
         }}
       ></div>
     </>
@@ -520,45 +506,47 @@ function HeaderBar({ minimizeRef, maximizeRef, closeRef }: HeaderBarProps) {
 
   return (
     <div
-      className="h-20 flex-shrink-0 border-b-2 backdrop-blur-lg flex items-center justify-between px-8 z-10"
-      style={{
-        borderColor: `${accentColor.value}40`,
-        backgroundColor: `rgba(${Number.parseInt(accentColor.value.slice(1, 3), 16)}, ${Number.parseInt(
-          accentColor.value.slice(3, 5),
-          16,
-        )}, ${Number.parseInt(accentColor.value.slice(5, 7), 16)}, 0.01)`,
-      }}
+      className="h-20 flex-shrink-0 liquid-glass-header flex items-center justify-between px-8 z-10"
       data-tauri-drag-region
     >
       <div className="flex items-center gap-4" data-tauri-drag-region>
         <NavigationHistory />
 
-        <div className="flex flex-col items-start">
-          <div className="flex items-center gap-3">
-            <h1
-              className="font-smallcaps text-2xl tracking-wider font-bold text-shadow"
-              data-tauri-drag-region
-            >
-              VitoClient
-            </h1>
-            {availableUpdate && (
-              <Tooltip content={isUpdating ? t('header.update.tooltip_updating') : t('header.update.tooltip_available', { version: availableUpdate.version })}>
-                <div
-                  className={isUpdating ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}
-                  onClick={handleUpdateClick}
-                >
-                  <Icon
-                    icon={isUpdating ? "solar:download-minimalistic-bold" : "solar:download-minimalistic-bold"}
-                    className={`w-6 h-6 transition-colors ${isUpdating ? 'animate-pulse' : ''}`}
-                    style={{
-                      color: accentColor.value,
-                    }}
-                  />
-                </div>
-              </Tooltip>
-            )}
+        <div className="flex items-center gap-3" data-tauri-drag-region>
+          <div className="p-1 rounded-xl bg-white/[0.06] border border-white/10 shadow-[0_2px_12px_rgba(0,0,0,0.4)] flex items-center justify-center">
+            <img
+              src="/vt.png"
+              alt="VT Logo"
+              className="w-8 h-8 object-contain rounded-lg select-none pointer-events-none drop-shadow"
+            />
           </div>
-          <HeaderInfoCarousel version={appVersion} />
+          <div className="flex flex-col items-start">
+            <div className="flex items-center gap-2.5">
+              <h1
+                className="font-smallcaps text-2xl tracking-wider font-bold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
+                data-tauri-drag-region
+              >
+                VitoClient
+              </h1>
+              {availableUpdate && (
+                <Tooltip content={isUpdating ? t('header.update.tooltip_updating') : t('header.update.tooltip_available', { version: availableUpdate.version })}>
+                  <div
+                    className={isUpdating ? 'cursor-not-allowed opacity-50' : 'cursor-pointer'}
+                    onClick={handleUpdateClick}
+                  >
+                    <Icon
+                      icon={isUpdating ? "solar:download-minimalistic-bold" : "solar:download-minimalistic-bold"}
+                      className={`w-6 h-6 transition-colors ${isUpdating ? 'animate-pulse' : ''}`}
+                      style={{
+                        color: accentColor.value,
+                      }}
+                    />
+                  </div>
+                </Tooltip>
+              )}
+            </div>
+            <HeaderInfoCarousel version={appVersion} />
+          </div>
         </div>
       </div>
 

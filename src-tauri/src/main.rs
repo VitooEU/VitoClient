@@ -155,7 +155,10 @@ use commands::friends_command::{
 #[tokio::main]
 async fn main() {
     #[cfg(target_os = "linux")]
-    std::env::set_var("__NV_DISABLE_EXPLICIT_SYNC", "1");
+    {
+        std::env::set_var("__NV_DISABLE_EXPLICIT_SYNC", "1");
+        std::env::set_var("WEBKIT_DISABLE_DMABUF_RENDERER", "1");
+    }
 
     if let Err(e) = logging::setup_logging().await {
         eprintln!("FEHLER: Logging konnte nicht initialisiert werden: {}", e);

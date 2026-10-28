@@ -143,16 +143,11 @@ export function VerticalNavbar({
       <div
         ref={navRef}
         className={cn(
-          "flex flex-col items-center py-6 w-24 backdrop-blur-lg",
+          "flex flex-col items-center py-6 w-24 liquid-glass-sidebar",
           className,
         )}
-        style={{
-          backgroundColor: `rgba(${parseInt(accentColor.value.slice(1, 3), 16)}, ${parseInt(accentColor.value.slice(3, 5), 16)}, ${parseInt(accentColor.value.slice(5, 7), 16)}, 0.4)`,
-          borderRight: `2px solid ${accentColor.value}60`,
-          borderLeft: `2px solid ${accentColor.value}60`,
-          boxShadow: `0 0 10px ${accentColor.value}30 inset`,
-        }}
-      >        <div className="mb-12">
+      >
+        <div className="mb-10 p-2 rounded-2xl bg-white/[0.04] border border-white/10 shadow-[0_4px_16px_rgba(0,0,0,0.3)] hover:scale-105 transition-transform duration-200">
           <Logo size="sm" onClick={() => setShowCreditsModal(true)} />
         </div>
 

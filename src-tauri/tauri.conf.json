@@ -211,7 +211,7 @@
         "minWidth": 1080,
         "minHeight": 690,
         "decorations": false,
-        "transparent": true,
+        "transparent": false,
         "center": true,
         "visible": false,
         "shadow": false

@@ -402,7 +402,7 @@ export function ProfileCardV2({
     
     return (
       <div
-        className={`relative flex flex-col ${gap} ${padding} rounded-lg ${variant === "3d" ? "backdrop-blur-md" : "bg-black/20 border border-white/10 hover:border-white/20"} transition-all duration-200 cursor-pointer`}
+        className={`relative flex flex-col ${gap} ${padding} rounded-xl liquid-glass-card cursor-pointer`}
         style={variant === "3d" ? get3DStyling() : {}}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -674,7 +674,7 @@ export function ProfileCardV2({
   // List layout (original layout)
   return (
     <div
-      className={`relative flex items-center gap-4 p-3 rounded-lg ${variant === "3d" ? "backdrop-blur-md" : "bg-black/20 border border-white/10 hover:border-white/20"} transition-all duration-200 cursor-pointer`}
+      className={`relative flex items-center gap-4 p-3.5 rounded-xl liquid-glass-card cursor-pointer`}
       style={variant === "3d" ? get3DStyling() : {}}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}

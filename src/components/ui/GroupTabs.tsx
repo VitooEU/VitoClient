@@ -60,14 +60,14 @@ export function GroupTabs({
           <button
             key={group.id}
             onClick={() => handleGroupClick(group.id)}
-                         className={`px-3 py-1 rounded-lg font-smallcaps text-lg transition-all duration-200 flex items-center gap-2 border-2 ${
+            className={`px-3.5 py-1.5 rounded-xl font-smallcaps text-base tracking-wide transition-all duration-200 flex items-center gap-2 border ${
               activeGroup === group.id
-                ? 'text-white'
-                : 'text-white/70 bg-black/30 hover:bg-black/40 border-white/10 hover:border-white/20'
+                ? 'text-white bg-white/[0.08] shadow-[0_2px_12px_rgba(0,0,0,0.3)]'
+                : 'text-white/60 bg-white/[0.02] hover:bg-white/[0.05] border-white/5 hover:border-white/10'
             }`}
             style={{
-              backgroundColor: activeGroup === group.id ? `${accentColor.value}20` : undefined,
-              borderColor: activeGroup === group.id ? accentColor.value : undefined,
+              borderColor: activeGroup === group.id ? `${accentColor.value}90` : undefined,
+              boxShadow: activeGroup === group.id ? `0 2px 14px ${accentColor.value}25` : undefined,
             }}
           >
             {group.icon && (
