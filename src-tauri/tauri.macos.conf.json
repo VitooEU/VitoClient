@@ -1,0 +1,13 @@
+{
+  "bundle": {
+    "resources": [
+      "Assets.car"
+    ],
+    "externalBin": [
+      "binaries/vito-capture"
+    ],
+    "macOS": {
+      "minimumSystemVersion": "11.0"
+    }
+  }
+}

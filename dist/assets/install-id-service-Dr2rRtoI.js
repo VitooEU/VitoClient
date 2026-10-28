@@ -1,0 +1,1 @@
+const r="analytics_user_id";let e=null;const a=()=>{if(e)return e;let t=localStorage.getItem(r);return t||(t=`user_${Date.now()}_${Math.random().toString(36).substr(2,9)}`,localStorage.setItem(r,t)),e=t,t};export{a as g};
