@@ -1,6 +1,6 @@
 # Third-party icon artwork
 
-The launcher bundles 318 icons from the sets below. The artwork is redistributed
+The launcher bundles 320 icons from the sets below. The artwork is redistributed
 unmodified; only the icons actually used are included, extracted from the `@iconify-json/*`
 packages by `scripts/generate-icon-bundle.mjs`.
 
@@ -68,7 +68,7 @@ GENERATED — run `yarn icons` to refresh.
 
 ## Lucide (`lucide`)
 
-- 1 icon used of 1745
+- 3 icons used of 1745
 - Author: [Lucide Contributors](https://github.com/lucide-icons/lucide)
 - Licence: [ISC](https://github.com/lucide-icons/lucide/blob/main/LICENSE) (`ISC`)
 

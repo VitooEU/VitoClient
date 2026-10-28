@@ -58,7 +58,7 @@ export function BottomNavbar({
         className,
       )}
     >
-      <div className="flex items-center gap-1.5 px-3 py-2 rounded-2xl bg-[#111522]/95 border border-white/10 shadow-[0_12px_36px_rgba(0,0,0,0.55)]">
+      <div className="flex items-center gap-1.5 px-3 py-2 rounded-2xl bg-[#14151a]/95 border border-white/10 shadow-[0_12px_36px_rgba(0,0,0,0.7)] backdrop-blur-md">
         {mainItems.map((item) => {
           const isActive = active === item.id;
           return (

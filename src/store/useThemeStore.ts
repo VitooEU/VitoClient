@@ -277,7 +277,7 @@ interface ThemeState {
 export const useThemeStore = create<ThemeState>()(
   persist(
     (set, get) => ({
-      accentColor: ACCENT_COLORS.blue,
+      accentColor: ACCENT_COLORS.charcoal,
       isBackgroundAnimationEnabled: false,
       showNavLabels: true,
       macWindowControls: false,

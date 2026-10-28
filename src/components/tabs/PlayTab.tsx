@@ -126,8 +126,6 @@ export function PlayTab() {
           />
         </div>
       </div>
-
-      <NewsSection className="w-1/3 border-l-2 border-white/40 bg-black/10 backdrop-blur-lg p-5 overflow-hidden flex flex-col relative z-10" />
     </div>
   );
 }

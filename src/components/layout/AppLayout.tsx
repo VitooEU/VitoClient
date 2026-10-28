@@ -335,21 +335,19 @@ export function AppLayout({
   return (
     <div
       ref={launcherRef}
-      className="h-screen w-full liquid-glass-shell overflow-hidden relative flex flex-col border border-white/10 shadow-[0_8px_40px_rgba(0,0,0,0.6)]"
+      className="h-screen w-full liquid-glass-shell overflow-hidden relative flex flex-col border border-white/5 shadow-[0_8px_40px_rgba(0,0,0,0.8)]"
       style={{
-        backgroundColor: backgroundColor,
+        backgroundColor: "#111215",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundImage: isCustomMediaVisible 
-          ? `linear-gradient(to bottom right, ${getComplementaryBackgroundWithAlpha(0.3)}, rgba(0,0,0,0.5))`
-          : `linear-gradient(135deg, rgba(16, 20, 30, 0.94) 0%, rgba(8, 10, 16, 0.97) 100%)`,
+          ? `linear-gradient(to bottom right, rgba(20,20,25,0.4), rgba(10,10,12,0.8))`
+          : `linear-gradient(180deg, #14151a 0%, #0d0e11 100%)`,
         borderRadius: borderRadius > 0 ? `${borderRadius}px` : undefined,
         transform: "translateZ(0)",
         willChange: "transform",
       }}
     >
-      <BorderGlowEffects accentColor={themeAccentColor.value} />
-
       <HeaderBar
         minimizeRef={minimizeRef}
         maximizeRef={maximizeRef}
@@ -572,13 +570,11 @@ function HeaderBar({ minimizeRef, maximizeRef, closeRef }: HeaderBarProps) {
           <div className="flex items-center gap-4" data-tauri-drag-region>
             {/* Brand Logo - Ganz oben links */}
             <div className="flex items-center gap-3 select-none" data-tauri-drag-region>
-              <div className="p-1.5 rounded-xl bg-white/[0.06] border border-white/10 shadow-[0_2px_12px_rgba(0,0,0,0.4)] flex items-center justify-center hover:scale-105 transition-transform">
-                <img
-                  src="/v.png"
-                  alt="V Logo"
-                  className="w-8 h-8 object-contain rounded-lg select-none pointer-events-none drop-shadow"
-                />
-              </div>
+              <img
+                src="/v.png"
+                alt="V Logo"
+                className="w-10 h-10 object-contain select-none pointer-events-none drop-shadow hover:scale-105 transition-transform"
+              />
               <div className="flex flex-col items-start">
                 <div className="flex items-center gap-2.5">
                   <h1
@@ -672,27 +668,27 @@ function WindowControls({
   }
 
   return (
-    <div className="flex items-center gap-3 ml-4">
+    <div className="flex items-center gap-1 ml-4">
       <div
         ref={minimizeRef}
-        className="titlebar-button-borderless w-5 h-5 flex items-center justify-center text-white/60 hover:text-white transition-colors cursor-pointer"
+        className="w-10 h-8 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors cursor-pointer rounded"
         title={t('window.minimize')}
       >
-        <Icon icon="pixel:minus-solid" className="w-4 h-4" />
+        <Icon icon="lucide:minus" className="w-4 h-4" />
       </div>
       <div
         ref={maximizeRef}
-        className="titlebar-button-borderless w-5 h-5 flex items-center justify-center text-white/60 hover:text-white transition-colors cursor-pointer"
+        className="w-10 h-8 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors cursor-pointer rounded"
         title={t('window.maximize')}
       >
-        <Icon icon="pixel:expand-solid" className="w-4 h-4" />
+        <Icon icon="lucide:square" className="w-3.5 h-3.5" />
       </div>
       <div
         ref={closeRef}
-        className="titlebar-button-borderless w-5 h-5 flex items-center justify-center text-white/60 hover:text-red-500 transition-colors cursor-pointer"
+        className="w-10 h-8 flex items-center justify-center text-white/70 hover:text-white hover:bg-red-600 transition-colors cursor-pointer rounded"
         title={t('window.close')}
       >
-        <Icon icon="pixel:window-close-solid" className="w-4 h-4" />
+        <Icon icon="lucide:x" className="w-4 h-4" />
       </div>
     </div>
   );
