@@ -157,7 +157,9 @@ async fn main() {
     #[cfg(target_os = "linux")]
     {
         std::env::set_var("__NV_DISABLE_EXPLICIT_SYNC", "1");
+        std::env::set_var("GDK_BACKEND", "x11");
         std::env::set_var("WEBKIT_DISABLE_DMABUF_RENDERER", "1");
+        std::env::set_var("WEBKIT_FORCE_COMPOSITING_MODE", "1");
     }
 
     if let Err(e) = logging::setup_logging().await {
