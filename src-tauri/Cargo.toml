@@ -1,10 +1,10 @@
 [package]
-name = "vitoclient-launcher-v3"
+name = "VTC"
 version = "0.6.29"
 description = "A Tauri App"
 authors = ["Vito"]
 edition = "2021"
-default-run = "vitoclient-launcher-v3"
+default-run = "VTC"
 
 [workspace]
 members = ["crates/vito-ipc", "crates/vito-logging", "crates/vito-capture"]
@@ -34,7 +34,7 @@ crate-type = ["staticlib", "cdylib", "rlib"]
 tauri-build = { version = "2", features = [] }
 
 [[bin]]
-name = "vitoclient-launcher-v3"
+name = "VTC"
 path = "src/main.rs"
 
 [dependencies]
