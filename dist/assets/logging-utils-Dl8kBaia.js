@@ -1,0 +1,1 @@
+import{a7 as s,Z as t,a as c}from"./globals-Dz3AaC0K.js";var n=s();const m=t(n),a=(o,r)=>{console[o](r),c("log_message_command",{level:o,message:r}).catch(()=>{})},g=o=>a("info",o),l=o=>a("warn",o),f=o=>a("error",o);export{m as R,g as a,l as b,a as c,f as l,n as r};

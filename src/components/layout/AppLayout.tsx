@@ -521,31 +521,42 @@ function HeaderBar({ minimizeRef, maximizeRef, closeRef }: HeaderBarProps) {
       {macWindowControls ? (
         /* macOS mode: buttons left, title centered absolutely */
         <>
-          {/* Left: macOS buttons */}
-          <div className="flex items-center gap-2.5 group z-10">
+          {/* Left: macOS native traffic light buttons */}
+          <div className="flex items-center gap-2 group z-10 select-none">
             {/* Close (Red) */}
             <div
               ref={closeRef}
-              className="w-3.5 h-3.5 rounded-full bg-[#ff5f56] hover:bg-[#ff3b30] border border-[#e0443e] flex items-center justify-center cursor-pointer transition-all hover:scale-110 active:scale-95 shadow-sm"
+              className="w-3 h-3 rounded-full bg-[#ff5f57] border border-[#e0443e] active:brightness-90 flex items-center justify-center cursor-pointer shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)] flex-shrink-0"
+              style={{ width: "12px", height: "12px", aspectRatio: "1 / 1" }}
               title={t('window.close')}
             >
-              <span className="opacity-0 group-hover:opacity-100 text-[8px] font-bold text-black/70 leading-none select-none transition-opacity">✕</span>
+              <svg className="w-1.5 h-1.5 opacity-0 group-hover:opacity-80 transition-opacity pointer-events-none" viewBox="0 0 6 6" fill="none" stroke="#4d0000" strokeWidth="1.2" strokeLinecap="round">
+                <line x1="1" y1="1" x2="5" y2="5" />
+                <line x1="5" y1="1" x2="1" y2="5" />
+              </svg>
             </div>
             {/* Minimize (Yellow) */}
             <div
               ref={minimizeRef}
-              className="w-3.5 h-3.5 rounded-full bg-[#ffbd2e] hover:bg-[#ffaa00] border border-[#dea123] flex items-center justify-center cursor-pointer transition-all hover:scale-110 active:scale-95 shadow-sm"
+              className="w-3 h-3 rounded-full bg-[#febc2e] border border-[#d89e24] active:brightness-90 flex items-center justify-center cursor-pointer shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)] flex-shrink-0"
+              style={{ width: "12px", height: "12px", aspectRatio: "1 / 1" }}
               title={t('window.minimize')}
             >
-              <span className="opacity-0 group-hover:opacity-100 text-[9px] font-bold text-black/70 leading-none select-none transition-opacity">−</span>
+              <svg className="w-1.5 h-1.5 opacity-0 group-hover:opacity-80 transition-opacity pointer-events-none" viewBox="0 0 6 6" fill="none" stroke="#664400" strokeWidth="1.2" strokeLinecap="round">
+                <line x1="1" y1="3" x2="5" y2="3" />
+              </svg>
             </div>
             {/* Maximize (Green) */}
             <div
               ref={maximizeRef}
-              className="w-3.5 h-3.5 rounded-full bg-[#27c93f] hover:bg-[#1fb334] border border-[#1aab29] flex items-center justify-center cursor-pointer transition-all hover:scale-110 active:scale-95 shadow-sm"
+              className="w-3 h-3 rounded-full bg-[#28c840] border border-[#1aab29] active:brightness-90 flex items-center justify-center cursor-pointer shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)] flex-shrink-0"
+              style={{ width: "12px", height: "12px", aspectRatio: "1 / 1" }}
               title={t('window.maximize')}
             >
-              <span className="opacity-0 group-hover:opacity-100 text-[8px] font-bold text-black/70 leading-none select-none transition-opacity">+</span>
+              <svg className="w-1.5 h-1.5 opacity-0 group-hover:opacity-80 transition-opacity pointer-events-none" viewBox="0 0 6 6" fill="#004d11">
+                <polygon points="1,1 5,1 1,5" />
+                <polygon points="5,5 1,5 5,1" />
+              </svg>
             </div>
           </div>
 
@@ -638,30 +649,41 @@ function WindowControls({
 
   if (macWindowControls) {
     return (
-      <div className="flex items-center gap-2.5 ml-4 group">
+      <div className="flex items-center gap-2 ml-4 group select-none">
         {/* macOS Close (Red) */}
         <div
           ref={closeRef}
-          className="w-3.5 h-3.5 rounded-full bg-[#ff5f56] hover:bg-[#ff3b30] border border-[#e0443e] flex items-center justify-center cursor-pointer transition-all hover:scale-110 active:scale-95 shadow-sm"
+          className="w-3 h-3 rounded-full bg-[#ff5f57] border border-[#e0443e] active:brightness-90 flex items-center justify-center cursor-pointer shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)] flex-shrink-0"
+          style={{ width: "12px", height: "12px", aspectRatio: "1 / 1" }}
           title={t('window.close')}
         >
-          <span className="opacity-0 group-hover:opacity-100 text-[8px] font-bold text-black/70 leading-none select-none transition-opacity">✕</span>
+          <svg className="w-1.5 h-1.5 opacity-0 group-hover:opacity-80 transition-opacity pointer-events-none" viewBox="0 0 6 6" fill="none" stroke="#4d0000" strokeWidth="1.2" strokeLinecap="round">
+            <line x1="1" y1="1" x2="5" y2="5" />
+            <line x1="5" y1="1" x2="1" y2="5" />
+          </svg>
         </div>
         {/* macOS Minimize (Yellow) */}
         <div
           ref={minimizeRef}
-          className="w-3.5 h-3.5 rounded-full bg-[#ffbd2e] hover:bg-[#ffaa00] border border-[#dea123] flex items-center justify-center cursor-pointer transition-all hover:scale-110 active:scale-95 shadow-sm"
+          className="w-3 h-3 rounded-full bg-[#febc2e] border border-[#d89e24] active:brightness-90 flex items-center justify-center cursor-pointer shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)] flex-shrink-0"
+          style={{ width: "12px", height: "12px", aspectRatio: "1 / 1" }}
           title={t('window.minimize')}
         >
-          <span className="opacity-0 group-hover:opacity-100 text-[9px] font-bold text-black/70 leading-none select-none transition-opacity">−</span>
+          <svg className="w-1.5 h-1.5 opacity-0 group-hover:opacity-80 transition-opacity pointer-events-none" viewBox="0 0 6 6" fill="none" stroke="#664400" strokeWidth="1.2" strokeLinecap="round">
+            <line x1="1" y1="3" x2="5" y2="3" />
+          </svg>
         </div>
         {/* macOS Maximize (Green) */}
         <div
           ref={maximizeRef}
-          className="w-3.5 h-3.5 rounded-full bg-[#27c93f] hover:bg-[#1fb334] border border-[#1aab29] flex items-center justify-center cursor-pointer transition-all hover:scale-110 active:scale-95 shadow-sm"
+          className="w-3 h-3 rounded-full bg-[#28c840] border border-[#1aab29] active:brightness-90 flex items-center justify-center cursor-pointer shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)] flex-shrink-0"
+          style={{ width: "12px", height: "12px", aspectRatio: "1 / 1" }}
           title={t('window.maximize')}
         >
-          <span className="opacity-0 group-hover:opacity-100 text-[8px] font-bold text-black/70 leading-none select-none transition-opacity">+</span>
+          <svg className="w-1.5 h-1.5 opacity-0 group-hover:opacity-80 transition-opacity pointer-events-none" viewBox="0 0 6 6" fill="#004d11">
+            <polygon points="1,1 5,1 1,5" />
+            <polygon points="5,5 1,5 5,1" />
+          </svg>
         </div>
       </div>
     );
