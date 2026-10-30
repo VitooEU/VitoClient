@@ -708,7 +708,7 @@ pub async fn create_fabric_add_mods_meta(
     fs::create_dir_all(&runtime_dir).await?;
 
     let meta_file_path = runtime_dir.join(format!(
-        "nrc_fabric_mods_{}_{}.txt",
+        "vace_fabric_mods_{}_{}.txt",
         profile_id, minecraft_version
     ));
 
@@ -760,7 +760,7 @@ pub async fn build_forge_add_mods_meta(
     fs::create_dir_all(&runtime_dir).await?;
 
     let meta_file_path = runtime_dir.join(format!(
-        "nrc_forge_mods_{}_{}.txt",
+        "vace_forge_mods_{}_{}.txt",
         profile_id, minecraft_version
     ));
 

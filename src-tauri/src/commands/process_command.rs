@@ -6,7 +6,7 @@ use std::path::PathBuf;
 use tauri::Manager;
 use uuid::Uuid;
 
-const PROCESS_LOG_FILE_NAME: &str = "nrc-process.log";
+const PROCESS_LOG_FILE_NAME: &str = "vace-process.log";
 pub const MAX_LOG_CURSOR_BYTES: u64 = 512 * 1024;
 pub const LOG_TAIL_BYTES: u64 = 1024 * 1024;
 

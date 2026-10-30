@@ -133,7 +133,7 @@ impl Engine {
         let reason = request.reason;
 
         std::thread::Builder::new()
-            .name("nrc-save".into())
+            .name("vace-save".into())
             .spawn(move || match write_mp4(&clip, &path, &track, audio_track.as_slice()) {
                 Ok(written) => {
                     log::info!(
@@ -249,7 +249,7 @@ mod tests {
 
     #[test]
     fn a_second_clip_in_the_same_second_does_not_overwrite_the_first() {
-        let dir = std::env::temp_dir().join(format!("nrc-free-path-{}", std::process::id()));
+        let dir = std::env::temp_dir().join(format!("vace-free-path-{}", std::process::id()));
         let _ = std::fs::remove_dir_all(&dir);
         std::fs::create_dir_all(&dir).expect("temp dir");
 
@@ -270,7 +270,7 @@ mod tests {
 
     #[test]
     fn a_second_clip_while_the_first_is_still_being_written_gets_its_own_name() {
-        let dir = std::env::temp_dir().join(format!("nrc-reserve-path-{}", std::process::id()));
+        let dir = std::env::temp_dir().join(format!("vace-reserve-path-{}", std::process::id()));
         let _ = std::fs::remove_dir_all(&dir);
         std::fs::create_dir_all(&dir).expect("temp dir");
 

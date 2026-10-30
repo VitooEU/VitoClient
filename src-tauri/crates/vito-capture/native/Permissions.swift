@@ -1,7 +1,7 @@
 import AppKit
 import AVFoundation
 
-@_cdecl("nrc_input_monitoring")
+@_cdecl("vace_input_monitoring")
 func inputMonitoring(_ request: Bool) -> Bool {
     func check() -> Bool {
         if CGPreflightListenEventAccess() { return true }
@@ -11,7 +11,7 @@ func inputMonitoring(_ request: Bool) -> Bool {
     return DispatchQueue.main.sync { check() }
 }
 
-@_cdecl("nrc_open_permission_settings")
+@_cdecl("vace_open_permission_settings")
 func openPermissionSettings(_ permission: UInt8) -> Bool {
     let pane: String
     switch permission {

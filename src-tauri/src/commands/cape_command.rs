@@ -831,7 +831,7 @@ pub async fn download_template_and_open_explorer(
 
     debug!("Downloads directory: {:?}", downloads_dir);
 
-    let download_name = if with_elytra { "nrc_cape_template.png" } else { "nrc_cape_template_no_elytra.png" };
+    let download_name = if with_elytra { "vace_cape_template.png" } else { "vace_cape_template_no_elytra.png" };
     let file_path = downloads_dir.join(download_name);
     let file_path_str = file_path.to_string_lossy().to_string();
 

@@ -512,7 +512,7 @@ mod tests {
             .expect("the ring holds the whole encode");
         assert_eq!(clip.packets.len(), packets.len());
 
-        let path = std::env::temp_dir().join(format!("nrc-bframes-{}.mp4", std::process::id()));
+        let path = std::env::temp_dir().join(format!("vace-bframes-{}.mp4", std::process::id()));
         let track = TrackInfo {
             width: WIDTH as u32,
             height: HEIGHT as u32,
@@ -545,7 +545,7 @@ mod tests {
     }
 
     fn scratch(name: &str) -> PathBuf {
-        let dir = std::env::temp_dir().join(format!("nrc-staged-{name}-{}", std::process::id()));
+        let dir = std::env::temp_dir().join(format!("vace-staged-{name}-{}", std::process::id()));
         let _ = std::fs::remove_dir_all(&dir);
         std::fs::create_dir_all(&dir).expect("temp dir");
         dir
@@ -616,7 +616,7 @@ mod tests {
     #[ignore = "needs a real clip in NRC_TEST_CLIP"]
     fn a_written_clip_says_which_colours_it_holds() {
         let source = std::path::PathBuf::from(std::env::var("NRC_TEST_CLIP").unwrap());
-        let destination = std::env::temp_dir().join("nrc-colour-test.mp4");
+        let destination = std::env::temp_dir().join("vace-colour-test.mp4");
         let _ = std::fs::remove_file(&destination);
 
         crate::trim::trim(&source, &destination, 0.0, 2.0, None, None, &[]).unwrap();

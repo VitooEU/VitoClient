@@ -1,7 +1,7 @@
 import AppKit
 import Foundation
 
-@_cdecl("nrc_open_apps")
+@_cdecl("vace_open_apps")
 func openApps(_ foreground: Bool) -> UnsafeMutablePointer<CChar>? {
     let front = NSWorkspace.shared.frontmostApplication?.processIdentifier
     let windows = CGWindowListCopyWindowInfo([.optionOnScreenOnly, .excludeDesktopElements], kCGNullWindowID) as? [[String: Any]] ?? []
@@ -24,7 +24,7 @@ func openApps(_ foreground: Bool) -> UnsafeMutablePointer<CChar>? {
     return strdup(json)
 }
 
-@_cdecl("nrc_free_string")
+@_cdecl("vace_free_string")
 func freeString(_ value: UnsafeMutablePointer<CChar>?) { free(value) }
 
 private var eventTap: CFMachPort?
@@ -48,7 +48,7 @@ private let keyNames: [Int64: String] = [
     123:"ArrowLeft",124:"ArrowRight",125:"ArrowDown",126:"ArrowUp"
 ]
 
-@_cdecl("nrc_hotkeys")
+@_cdecl("vace_hotkeys")
 func installHotkeys(_ json: UnsafePointer<CChar>, _ callback: @escaping @convention(c) (UInt8) -> Void) -> Int32 {
     guard let data = String(cString: json).data(using: .utf8),
           let specs = try? JSONDecoder().decode([String].self, from: data) else { return 1 }
@@ -112,7 +112,7 @@ func installHotkeys(_ json: UnsafePointer<CChar>, _ callback: @escaping @convent
     return DispatchQueue.main.sync { install() }
 }
 
-@_cdecl("nrc_capture_supported")
+@_cdecl("vace_capture_supported")
 func captureSupported() -> Bool {
     if #available(macOS 15.0, *) { return true }
     return false

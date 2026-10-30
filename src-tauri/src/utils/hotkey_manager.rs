@@ -87,7 +87,7 @@ pub fn apply(app: &AppHandle, config: &ClipConfig) -> Result<Vec<String>> {
         } else {
             let handle = app.clone();
             std::thread::Builder::new()
-                .name("nrc-hotkey-dispatch".into())
+                .name("vace-hotkey-dispatch".into())
                 .spawn(move || {
                     while let Ok(press) = presses.recv() {
                         let tag = match press {

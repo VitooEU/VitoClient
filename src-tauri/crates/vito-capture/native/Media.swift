@@ -107,7 +107,7 @@ func makeMix(_ tracks: [AVAssetTrack], range: CMTimeRange, gains: [Float], to ur
 }
 
 func temporaryDirectory() throws -> URL {
-    let dir = FileManager.default.temporaryDirectory.appendingPathComponent("nrc-clip-\(UUID().uuidString)")
+    let dir = FileManager.default.temporaryDirectory.appendingPathComponent("vace-clip-\(UUID().uuidString)")
     try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
     return dir
 }
@@ -195,7 +195,7 @@ func editMedia(_ message: [String: Any]) async throws {
     let duration = assetDuration.seconds
     guard duration.isFinite, duration > 0 else { throw failure("The clip has no readable duration.") }
     if message["type"] as? String == "prepare_audio_preview" {
-        let dir = FileManager.default.temporaryDirectory.appendingPathComponent("nrc-clip-preview")
+        let dir = FileManager.default.temporaryDirectory.appendingPathComponent("vace-clip-preview")
         try? FileManager.default.removeItem(at: dir)
         try FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
         var tracks: [[String: Any]] = []

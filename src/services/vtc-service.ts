@@ -61,7 +61,7 @@ export const refreshVtcDataOnMount = async (): Promise<void> => {
   //console.log("[TEST] 5-second delay finished.");
 
   try {
-    let nrcPacksSuccess = false;
+    let vacePacksSuccess = false;
     let standardVersionsSuccess = false;
 
     // Fire and forget: Load blocked mods config from Flagsmith
@@ -99,7 +99,7 @@ export const refreshVtcDataOnMount = async (): Promise<void> => {
     try {
       await refreshVitoPacks();
       console.log("Vito Packs updated successfully on mount!");
-      nrcPacksSuccess = true;
+      vacePacksSuccess = true;
     } catch (error) {
       console.error("Failed to refresh Vito Packs on mount:", error);
     }
@@ -116,7 +116,7 @@ export const refreshVtcDataOnMount = async (): Promise<void> => {
 
     // Fetch profiles from the store after VTC data is refreshed
     // This ensures the profile list (including standard versions) and last played are up-to-date.
-    if (nrcPacksSuccess || standardVersionsSuccess) { // Or simply always call it if appropriate
+    if (vacePacksSuccess || standardVersionsSuccess) { // Or simply always call it if appropriate
       try {
         console.log("Refreshing profiles state after VTC data update...");
         await useProfileStore.getState().fetchProfiles();

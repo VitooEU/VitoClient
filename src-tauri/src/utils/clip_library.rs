@@ -140,7 +140,7 @@ fn plain(path: PathBuf) -> PathBuf {
 pub fn meta_dir() -> PathBuf {
     #[cfg(test)]
     {
-        return std::env::temp_dir().join("nrc-clip-meta-test");
+        return std::env::temp_dir().join("vace-clip-meta-test");
     }
 
     #[cfg(not(test))]
@@ -762,7 +762,7 @@ mod tests {
     }
 
     fn temp_dir(tag: &str) -> PathBuf {
-        let dir = std::env::temp_dir().join(format!("nrc-clip-test-{tag}-{}", std::process::id()));
+        let dir = std::env::temp_dir().join(format!("vace-clip-test-{tag}-{}", std::process::id()));
         let _ = std::fs::remove_dir_all(&dir);
         std::fs::create_dir_all(&dir).unwrap();
         dir
@@ -872,7 +872,7 @@ mod tests {
     #[test]
     fn a_path_outside_the_clip_folder_is_refused() {
         let dir = temp_dir("guard-inside");
-        let outside = std::env::temp_dir().join("nrc-guard-inside-outside.mp4");
+        let outside = std::env::temp_dir().join("vace-guard-inside-outside.mp4");
         std::fs::write(&outside, b"x").unwrap();
 
         assert!(guard_inside(&dir, &outside).is_err());
@@ -894,7 +894,7 @@ mod tests {
 
     #[test]
     fn a_missing_folder_is_empty_rather_than_an_error() {
-        let dir = std::env::temp_dir().join("nrc-clip-test-does-not-exist");
+        let dir = std::env::temp_dir().join("vace-clip-test-does-not-exist");
         let _ = std::fs::remove_dir_all(&dir);
         assert!(list(&dir).unwrap().is_empty());
     }
@@ -1226,7 +1226,7 @@ mod tests {
     #[test]
     fn deleting_outside_the_clip_folder_is_refused() {
         let dir = temp_dir("guard");
-        let outside = std::env::temp_dir().join("nrc-not-a-clip.mp4");
+        let outside = std::env::temp_dir().join("vace-not-a-clip.mp4");
         std::fs::write(&outside, b"x").unwrap();
 
         let result = delete(&dir, &outside);
@@ -1421,7 +1421,7 @@ mod tests {
     #[test]
     fn a_source_outside_the_clip_folder_is_refused() {
         let dir = temp_dir("trim-escape");
-        let outside = std::env::temp_dir().join("nrc-not-a-clip-to-trim.mp4");
+        let outside = std::env::temp_dir().join("vace-not-a-clip-to-trim.mp4");
         std::fs::write(&outside, [0u8; 4]).unwrap();
 
         assert!(trimmed_destination(&dir, &outside).is_err());

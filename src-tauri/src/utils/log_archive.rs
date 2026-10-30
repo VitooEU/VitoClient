@@ -9,7 +9,7 @@ use uuid::Uuid;
 
 const MAX_SESSIONS: usize = 10;
 const STARTUP_PURGE_THRESHOLD: u64 = 500 * 1024 * 1024;
-pub const SESSION_LOG_FILE: &str = "nrc-process.log";
+pub const SESSION_LOG_FILE: &str = "vace-process.log";
 
 pub struct SessionInfo<'a> {
     pub process_id: Uuid,

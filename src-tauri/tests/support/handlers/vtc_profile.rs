@@ -28,7 +28,7 @@ fn vito_dir(instance: &Path, current: &str) {
 
 #[test]
 fn the_active_profile_is_sent_whole_with_server_addresses_replaced_and_secrets_masked() {
-    let dir = temp_dir("nrc-profile");
+    let dir = temp_dir("vace-profile");
     vito_dir(&dir, "Main");
 
     let item = prepare_vtc_profile(&dir);
@@ -46,7 +46,7 @@ fn the_active_profile_is_sent_whole_with_server_addresses_replaced_and_secrets_m
 
 #[test]
 fn a_big_profile_with_many_servers_is_anonymized_within_a_second() {
-    let dir = temp_dir("nrc-profile-big");
+    let dir = temp_dir("vace-profile-big");
     vito_dir(&dir, "Main");
     let servers: Vec<String> = (0..40)
         .map(|i| format!(r#""play{}.server.net":{{"zoom":{}}}"#, i, i))
@@ -73,7 +73,7 @@ fn a_big_profile_with_many_servers_is_anonymized_within_a_second() {
 
 #[test]
 fn an_active_profile_pointing_outside_the_profiles_folder_is_refused() {
-    let dir = temp_dir("nrc-profile-escape");
+    let dir = temp_dir("vace-profile-escape");
     vito_dir(&dir, "../../escape");
     std::fs::write(dir.join("escape.json"), r#"{"modules":[{"name":"ESCAPED"}]}"#).unwrap();
 
@@ -85,6 +85,6 @@ fn an_active_profile_pointing_outside_the_profiles_folder_is_refused() {
 
 #[test]
 fn without_a_vito_folder_the_profile_is_missing() {
-    let item = prepare_vtc_profile(&temp_dir("nrc-profile-none"));
+    let item = prepare_vtc_profile(&temp_dir("vace-profile-none"));
     assert!(!item.available && item.error.is_none());
 }

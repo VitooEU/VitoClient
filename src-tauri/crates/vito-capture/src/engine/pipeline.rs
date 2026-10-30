@@ -176,7 +176,7 @@ impl Engine {
             let latency = Arc::clone(&encode_latency);
             let hidden = Arc::clone(&hidden);
             std::thread::Builder::new()
-                .name("nrc-encode".into())
+                .name("vace-encode".into())
                 .spawn(move || {
                     let _done = encode_done_tx;
                     encode_loop(encoder, frames_rx, ring, fps, latency, black, hidden)

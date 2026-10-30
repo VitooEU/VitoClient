@@ -26,7 +26,7 @@ const outArg = process.argv.indexOf("--out");
 const outDir = outArg >= 0 ? path.resolve(process.argv[outArg + 1]) : path.join(repoRoot, "src-tauri", "target", "capture-runtime");
 fs.mkdirSync(outDir, { recursive: true });
 
-const staging = fs.mkdtempSync(path.join(os.tmpdir(), "nrc-capture-runtime-"));
+const staging = fs.mkdtempSync(path.join(os.tmpdir(), "vace-capture-runtime-"));
 fs.mkdirSync(path.join(staging, "licenses"));
 
 copy(path.join(binaries, ENGINE_STAGED_NAME), path.join(staging, ENGINE_SHIPPED_NAME));

@@ -326,7 +326,7 @@ impl MinecraftLauncher {
         command.arg(format!("-Xmx{}M", params.memory_max_mb));
 
         // Check if custom JVM args contain a custom GC setting
-        //fix for https://github.com/NoRiskClient/issues/issues/2357
+        //fix for upstream issue #2357
         let custom_gc_patterns = [
             "-XX:+UseZGC",
             "-XX:+UseG1GC",

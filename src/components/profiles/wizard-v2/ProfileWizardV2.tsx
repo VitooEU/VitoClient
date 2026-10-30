@@ -91,7 +91,7 @@ export function ProfileWizardV2({
   const [selectedLoaderVersion, setSelectedLoaderVersion] = useState<string | null>(null);
 
   // VTC compatibility data
-  const [nrcCompatibility, setNrcCompatibility] = useState<VtcCompatibilityData | null>(null);
+  const [vaceCompatibility, setNrcCompatibility] = useState<VtcCompatibilityData | null>(null);
 
   useEffect(() => {
     const loadMinecraftVersions = async () => {
@@ -292,7 +292,7 @@ export function ProfileWizardV2({
         {/* Version List */}
         <div className="max-h-96 overflow-y-auto overflow-x-hidden scrollbar-hide grid grid-cols-3 gap-3">
           {filteredVersions.map(version => {
-            const isNrcCompatible = nrcCompatibility?.compatibleVersions.has(version.id);
+            const isVaceCompatible = vaceCompatibility?.compatibleVersions.has(version.id);
 
             return (
               <div
@@ -309,7 +309,7 @@ export function ProfileWizardV2({
                 onClick={() => setSelectedVersion(version.id)}
               >
                 {/* VTC Compatibility Star */}
-                {isNrcCompatible && (
+                {isVaceCompatible && (
                   <div className="absolute top-2 right-2 z-10">
                     <Tooltip content={<NrcCompatibleTooltipContent />}>
                       <div className="flex items-center justify-center w-6 h-6 rounded-full">
@@ -445,7 +445,7 @@ export function ProfileWizardV2({
         onNext={handleStep2Next}
         onBack={handleBackToStep1}
         selectedMinecraftVersion={selectedVersion}
-        nrcCompatibility={nrcCompatibility}
+        vaceCompatibility={vaceCompatibility}
       />
     );
   }

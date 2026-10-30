@@ -28,7 +28,7 @@ pub fn test_ctx(instance: &Path, file_byte_budget: u64) -> SupportContext {
 
 pub fn temp_dir(name: &str) -> PathBuf {
     let dir = std::env::temp_dir().join(format!(
-        "nrc-support-test-{}-{}",
+        "vace-support-test-{}-{}",
         name,
         uuid::Uuid::new_v4()
     ));

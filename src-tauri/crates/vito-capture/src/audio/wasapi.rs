@@ -108,7 +108,7 @@ impl LoopbackCapture {
         let thread_running = Arc::clone(&running);
 
         let thread = std::thread::Builder::new()
-            .name("nrc-audio".into())
+            .name("vace-audio".into())
             .spawn(move || {
                 if let Err(e) = capture_loop(&thread_running, &mut sink, &source, format) {
                     log::error!("Audio capture stopped: {e:#}");

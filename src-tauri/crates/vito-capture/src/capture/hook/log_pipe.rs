@@ -39,7 +39,7 @@ impl HookLog {
 
         let raw = handle.0 as isize;
         std::thread::Builder::new()
-            .name("nrc-hook-log".into())
+            .name("vace-hook-log".into())
             .spawn(move || {
                 let handle = HANDLE(raw as *mut std::ffi::c_void);
                 unsafe {

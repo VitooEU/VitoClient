@@ -1,9 +1,9 @@
 export type LegalLocale = "de" | "en";
 
 export const LEGAL_DOCUMENT_URLS = {
-  terms: { en: "https://norisk.gg/tos", de: "https://norisk.gg/de/agbs" },
-  privacy: { en: "https://norisk.gg/privacy", de: "https://norisk.gg/de/datenschutzerklaerung" },
-  licenses: { en: "https://norisk.gg/licenses", de: "https://norisk.gg/de/lizenzen" },
+  terms: { en: "https://vace.gg/tos", de: "https://vace.gg/de/agbs" },
+  privacy: { en: "https://vace.gg/privacy", de: "https://vace.gg/de/datenschutzerklaerung" },
+  licenses: { en: "https://vace.gg/licenses", de: "https://vace.gg/de/lizenzen" },
 } satisfies Record<string, Record<LegalLocale, string>>;
 
 export const legalLocale = (language: string | undefined): LegalLocale =>

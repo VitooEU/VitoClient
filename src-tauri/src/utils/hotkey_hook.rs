@@ -177,7 +177,7 @@ pub fn install(bindings: Vec<(Binding, u8)>, events: Sender<Press>) -> crate::er
     let (ready_tx, ready_rx) = mpsc::channel::<std::result::Result<u32, String>>();
 
     let handle = std::thread::Builder::new()
-        .name("nrc-hotkey-hook".into())
+        .name("vace-hotkey-hook".into())
         .spawn(move || {
             let keyboard = unsafe { SetWindowsHookExW(WH_KEYBOARD_LL, Some(callback), None, 0) };
 

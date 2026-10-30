@@ -16,7 +16,7 @@ pub static LAUNCHER_DIRECTORY: Lazy<ProjectDirs> =
 pub static CUSTOM_GAME_DIR_CACHE: Lazy<RwLock<Option<Option<PathBuf>>>> = 
     Lazy::new(|| RwLock::new(None));
 
-static APP_USER_AGENT: &str = concat!(env!("CARGO_PKG_NAME"), "/", env!("CARGO_PKG_VERSION"), " (support@norisk.gg)");
+static APP_USER_AGENT: &str = concat!(env!("CARGO_PKG_NAME"), "/", env!("CARGO_PKG_VERSION"), " (support@vace.gg)");
 
 pub const HTTP_CONNECT_TIMEOUT: Duration = Duration::from_secs(10);
 

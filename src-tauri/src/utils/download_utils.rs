@@ -620,7 +620,7 @@ impl DownloadUtils {
         Ok(())
     }
 
-    /// fix for https://github.com/NoRiskClient/issues/issues/1487
+    /// fix for upstream issue #1487
     /// Comprehensive ZIP file integrity check - detects incomplete/corrupt JAR files
     /// Checks both ZIP header and End of Central Directory record
     pub async fn is_zip_file_complete(file_path: &Path) -> bool {

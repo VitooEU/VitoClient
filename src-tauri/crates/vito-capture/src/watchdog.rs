@@ -25,7 +25,7 @@ pub fn watch_parent(pid: u32) {
     let handle = Owned(handle);
 
     let watcher = std::thread::Builder::new()
-        .name("nrc-parent-watch".into())
+        .name("vace-parent-watch".into())
         .spawn(move || {
             let handle = handle;
             unsafe { WaitForSingleObject(handle.0, INFINITE) };

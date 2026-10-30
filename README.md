@@ -1,6 +1,6 @@
 ## Issues
 
-If you notice any bugs or missing features, you can let us know by opening an issue [here](https://norisk.gg/issues).
+If you notice any bugs or missing features, you can let us know by opening an issue [here](https://vace.gg/issues).
 
 ## License
 This code is originally forked and still uses a small amount of code from [LiquidLauncher](https://github.com/CCBlueX/LiquidLauncher).
@@ -23,7 +23,7 @@ Do the above and share your source code with everyone; just like we do.
 ### Setup Instructions
 1. Clone the repository:
    ```bash
-   git clone --recurse-submodules https://github.com/NoRiskClient/noriskclient-launcher
+   git clone --recurse-submodules https://github.com/VaceClient/vaceclient-launcher
    cd vitoclient-launcher
    ```
 

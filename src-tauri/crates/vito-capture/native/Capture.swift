@@ -444,7 +444,7 @@ func set(_ session: VTCompressionSession, _ key: CFString, _ value: CFTypeRef) t
     if result != noErr { throw CaptureFailure(code: "encoder_unavailable", message: "VideoToolbox setting \(key) failed (\(result)).") }
 }
 
-@_cdecl("nrc_capture_main")
+@_cdecl("vace_capture_main")
 func captureMain(_ logger: @escaping @convention(c) (UnsafePointer<CChar>) -> Void) {
     captureLogger = logger
     captureLog("macOS capture engine starting")

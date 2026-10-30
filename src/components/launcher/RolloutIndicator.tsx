@@ -18,7 +18,7 @@ import { getPackRolloutConfig } from "../../services/flagsmith-service";
 
 const ACTIVE_COLOR = "#f59e0b";
 const FALLBACK_PCT = 5;
-const DISCORD_URL = "https://discord.norisk.gg";
+const DISCORD_URL = "https://discord.vace.gg";
 
 const POPOVER_WIDTH = 320; // px (matches w-[20rem])
 const POPOVER_EST_HEIGHT = 260; // px (estimate for boundary calc)

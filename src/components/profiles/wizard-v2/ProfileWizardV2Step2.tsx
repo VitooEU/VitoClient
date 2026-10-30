@@ -41,7 +41,7 @@ interface ProfileWizardV2Step2Props {
   onNext: (selectedLoader: ModLoader, selectedLoaderVersion: string | null) => void;
   onBack: () => void;
   selectedMinecraftVersion: string;
-  nrcCompatibility: VtcCompatibilityData | null;
+  vaceCompatibility: VtcCompatibilityData | null;
 }
 
 export function ProfileWizardV2Step2({
@@ -49,7 +49,7 @@ export function ProfileWizardV2Step2({
   onNext,
   onBack,
   selectedMinecraftVersion,
-  nrcCompatibility
+  vaceCompatibility
 }: ProfileWizardV2Step2Props) {
   const { t } = useTranslation();
   const accentColor = useThemeStore((state) => state.accentColor);
@@ -315,7 +315,7 @@ export function ProfileWizardV2Step2({
           {modLoaders.map(loader => {
             const isUnavailable = unavailableLoaders.has(loader.key);
             const isDisabled = isUnavailable && loader.key !== "vanilla";
-            const isNrcCompatible = nrcCompatibility
+            const isVaceCompatible = vaceCompatibility
               ?.compatibleLoadersByVersion
               .get(selectedMinecraftVersion)
               ?.has(loader.key) ?? false;
@@ -344,7 +344,7 @@ export function ProfileWizardV2Step2({
                 onClick={() => !isDisabled && setSelectedLoader(loader.key)}
               >
                 {/* VTC Compatibility Star */}
-                {isNrcCompatible && !isDisabled && (
+                {isVaceCompatible && !isDisabled && (
                   <div className="absolute top-2 right-2 z-20">
                     <Tooltip content={<NrcLoaderCompatibleTooltipContent />}>
                       <div className="flex items-center justify-center w-6 h-6 rounded-full">

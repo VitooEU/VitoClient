@@ -251,7 +251,7 @@ export function SocialsModal() {
             {t('socials.referral_text')}{" "}
             <span
               className="text-accent underline cursor-pointer hover:text-accent/80"
-              onClick={() => openExternalUrl(navigator.language.startsWith("de") ? "https://nrc.gg/freunde-werben" : "https://nrc.gg/invite-friends")}
+              onClick={() => openExternalUrl(navigator.language.startsWith("de") ? "https://vace.gg/freunde-werben" : "https://vace.gg/invite-friends")}
             >
               {t('socials.referral_more')}
             </span>
@@ -353,7 +353,7 @@ export function SocialsModal() {
             isProcessing={isProcessingDiscord}
             onLink={handleDiscordLink}
             onUnlink={handleDiscordUnlink}
-            visitUrl="https://discord.norisk.gg"
+            visitUrl="https://discord.vace.gg"
           />
 
           <AccountLinkRow
@@ -364,7 +364,7 @@ export function SocialsModal() {
             isProcessing={isProcessingGithub}
             onLink={handleGithubLink}
             onUnlink={handleGithubUnlink}
-            visitUrl="https://github.com/NoRiskClient"
+            visitUrl="https://github.com/VaceClient"
           />
 
           <TwitchLinkCard />

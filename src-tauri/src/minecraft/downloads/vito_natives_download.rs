@@ -37,7 +37,7 @@ pub struct NativeBundle {
 }
 
 pub const FFMPEG: NativeBundle = NativeBundle {
-    id: "nrc-ffmpeg",
+    id: "vace-ffmpeg",
     repository: "https://repo1.maven.org/maven2",
     notice: "FFmpeg is licensed under the GNU Lesser General Public License v2.1 or later.\n\
 License: https://www.gnu.org/licenses/old-licenses/lgpl-2.1.html\n\
@@ -275,7 +275,7 @@ mod tests {
     #[test]
     fn a_version_bump_installs_into_a_new_folder() {
         const BUMPED: NativeBundle = NativeBundle {
-            id: "nrc-ffmpeg",
+            id: "vace-ffmpeg",
             repository: "https://repo1.maven.org/maven2",
             notice: "",
             artifacts: &[NativeArtifact { group_id: "org.bytedeco", artifact_id: "ffmpeg", version: "9.0-1.5.15", sha256: &[] }],

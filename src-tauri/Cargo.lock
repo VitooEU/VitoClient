@@ -4,7 +4,7 @@
 version = 4
 
 [[package]]
-name = "VTC"
+name = "VaceClient"
 version = "0.6.29"
 dependencies = [
  "anyhow",

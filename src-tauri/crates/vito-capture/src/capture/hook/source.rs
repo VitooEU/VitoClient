@@ -47,7 +47,7 @@ impl HookCapture {
             let stop = Arc::clone(&stop);
             let stats = Arc::clone(&stats);
             std::thread::Builder::new()
-                .name("nrc-hook-capture".into())
+                .name("vace-hook-capture".into())
                 .spawn(move || {
                     run(device, session, opened, staging, texture, fps, sink, stop, stats)
                 })

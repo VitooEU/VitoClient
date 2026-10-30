@@ -11,7 +11,7 @@
 /// let truncated = safe_truncate(korean, 5);
 /// // Returns "안" (3 bytes) instead of panicking at byte 5
 /// ```
-/// fix for https://github.com/NoRiskClient/issues/issues/2476
+/// fix for upstream issue #2476
 pub fn safe_truncate(s: &str, max_bytes: usize) -> &str {
     if max_bytes >= s.len() {
         return s;

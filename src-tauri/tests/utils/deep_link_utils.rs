@@ -32,6 +32,6 @@ fn a_second_start_by_a_deep_link_is_recognised() {
     let exe = r"C:\launcher\vitoclient-launcher-v3.exe".to_string();
     assert!(is_deep_link_launch(&[exe.clone(), "vito://support/request?code=ABC".into()]));
     assert!(!is_deep_link_launch(&[exe.clone(), "launch".into(), "--profile".into(), "x".into()]));
-    assert!(!is_deep_link_launch(&[exe.clone(), "https://norisk.gg".into()]));
+    assert!(!is_deep_link_launch(&[exe.clone(), "https://vace.gg".into()]));
     assert!(!is_deep_link_launch(&[exe]));
 }

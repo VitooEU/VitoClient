@@ -89,7 +89,7 @@ interface FilterOption {
   labelKey: string;
   icon: string;
   separator?: boolean;
-  nrcOnly?: boolean;
+  vaceOnly?: boolean;
   syncOnly?: boolean;
 }
 
@@ -102,7 +102,7 @@ const FILTER_OPTIONS: FilterOption[] = [
   { value: "fromModpack",   labelKey: "profiles.v3.filter.fromModpack",    icon: "solar:box-bold",             separator: true },
   { value: "manuallyAdded", labelKey: "profiles.v3.filter.manuallyAdded",  icon: "solar:hand-stars-bold" },
   { value: "fromSyncPack",  labelKey: "profiles.v3.filter.fromSyncPack",   icon: "solar:link-round-bold",      syncOnly: true },
-  { value: "vitoIssues",  labelKey: "profiles.v3.filter.vitoIssues",   icon: "solar:danger-triangle-bold", separator: true, nrcOnly: true },
+  { value: "vitoIssues",  labelKey: "profiles.v3.filter.vitoIssues",   icon: "solar:danger-triangle-bold", separator: true, vaceOnly: true },
 ];
 
 export function LocalContentTabV3<T extends LocalContentItem>({
@@ -371,7 +371,7 @@ export function LocalContentTabV3<T extends LocalContentItem>({
   );
   const filterDropdownOptions: DropdownOption[] = useMemo(
     () => FILTER_OPTIONS
-      .filter(opt => !opt.nrcOnly || isBlockedConfigLoaded)
+      .filter(opt => !opt.vaceOnly || isBlockedConfigLoaded)
       .filter(opt => !opt.syncOnly || sync.mods.length > 0)
       .map(o => ({ value: o.value, label: t(o.labelKey), icon: o.icon, separator: o.separator })),
     [t, isBlockedConfigLoaded, sync.mods.length],

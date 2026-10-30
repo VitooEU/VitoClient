@@ -14,7 +14,7 @@ impl Engine {
         let events = self.events.clone();
 
         let spawned = std::thread::Builder::new()
-            .name("nrc-preview".into())
+            .name("vace-preview".into())
             .spawn(move || match crate::preview::prepare(&request.source) {
                 Ok(tracks) => {
                     let _ = events.send(CaptureToLauncher::AudioPreviewReady(
@@ -42,7 +42,7 @@ impl Engine {
 
     pub(super) fn export_vertical(&self, request: vito_ipc::ExportVerticalRequest) {
         self.spawn_export(
-            "nrc-export",
+            "vace-export",
             "Vertical export failed",
             "could not start the export",
             request.source.clone(),
@@ -70,7 +70,7 @@ impl Engine {
 
     pub(super) fn export_gif(&self, request: vito_ipc::ExportGifRequest) {
         self.spawn_export(
-            "nrc-gif",
+            "vace-gif",
             "GIF export failed",
             "could not start the GIF export",
             request.source.clone(),
@@ -152,7 +152,7 @@ impl Engine {
 
     pub(super) fn trim_clip(&self, request: vito_ipc::TrimClipRequest) {
         self.spawn_export(
-            "nrc-trim",
+            "vace-trim",
             "Trim failed",
             "could not start the trim",
             request.source.clone(),

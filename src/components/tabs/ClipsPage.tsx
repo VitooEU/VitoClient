@@ -34,7 +34,7 @@ const WINDOW: CaptureMethod = "window capture";
 const SCREEN: CaptureMethod = "screen capture";
 
 const ALL_GAMES = "__all__";
-const FEEDBACK_URL = "https://discord.norisk.gg";
+const FEEDBACK_URL = "https://discord.vace.gg";
 
 type Tone = "live" | "waiting" | "warn" | "off";
 

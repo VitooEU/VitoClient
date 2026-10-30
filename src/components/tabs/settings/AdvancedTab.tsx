@@ -405,7 +405,7 @@ export function AdvancedTab() {
             variant="ghost"
             size="sm"
             onClick={() => {
-              openExternalUrl("https://norisk.gg/licenses")
+              openExternalUrl("https://vace.gg/licenses")
             }}
             icon={<Icon icon="solar:arrow-right-up-bold" className="w-5 h-5" />}
           >

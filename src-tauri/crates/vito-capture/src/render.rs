@@ -1057,7 +1057,7 @@ mod render_tests {
     #[ignore = "needs a real clip in NRC_TEST_CLIP"]
     fn a_real_clip_takes_a_blur_an_arrow_and_some_text() {
         let source = std::path::PathBuf::from(std::env::var("NRC_TEST_CLIP").unwrap());
-        let destination = std::env::temp_dir().join("nrc-overlay-test.mp4");
+        let destination = std::env::temp_dir().join("vace-overlay-test.mp4");
         let _ = std::fs::remove_file(&destination);
 
         let overlays = vec![
@@ -1125,7 +1125,7 @@ mod render_tests {
         use crate::encoder::video::TIME_BASE_DEN;
 
         let source = std::path::PathBuf::from(std::env::var("NRC_TEST_CLIP").unwrap());
-        let destination = std::env::temp_dir().join("nrc-cut-render-test.mp4");
+        let destination = std::env::temp_dir().join("vace-cut-render-test.mp4");
         let _ = std::fs::remove_file(&destination);
 
         let original = crate::trim::read(&source).unwrap();
@@ -1177,7 +1177,7 @@ mod render_tests {
         use crate::encoder::video::TIME_BASE_DEN;
 
         let source = std::path::PathBuf::from(std::env::var("NRC_TEST_CLIP").unwrap());
-        let destination = std::env::temp_dir().join("nrc-removed-render-test.mp4");
+        let destination = std::env::temp_dir().join("vace-removed-render-test.mp4");
         let _ = std::fs::remove_file(&destination);
 
         let original = crate::trim::read(&source).unwrap();

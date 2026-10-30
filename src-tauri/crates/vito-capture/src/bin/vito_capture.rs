@@ -74,7 +74,7 @@ fn main() -> anyhow::Result<()> {
     let (events_tx, events_rx) = tokio::sync::mpsc::unbounded_channel();
 
     let engine = std::thread::Builder::new()
-        .name("nrc-engine".into())
+        .name("vace-engine".into())
         .spawn(move || Engine::new(events_tx).run(commands_rx))?;
 
     let runtime = tokio::runtime::Builder::new_current_thread()

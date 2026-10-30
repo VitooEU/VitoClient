@@ -4,7 +4,7 @@ use std::path::{Path, PathBuf};
 use anyhow::{Context, Result};
 
 fn preview_dir() -> PathBuf {
-    std::env::temp_dir().join("nrc-clip-preview")
+    std::env::temp_dir().join("vace-clip-preview")
 }
 
 pub fn prepare(source: &Path) -> Result<Vec<vito_ipc::PreviewTrack>> {
@@ -102,7 +102,7 @@ mod tests {
     fn round_trip(samples: &[f32]) -> Vec<i16> {
         static NEXT: std::sync::atomic::AtomicU32 = std::sync::atomic::AtomicU32::new(0);
         let tag = NEXT.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
-        let path = std::env::temp_dir().join(format!("nrc-wav-{tag}.wav"));
+        let path = std::env::temp_dir().join(format!("vace-wav-{tag}.wav"));
         write_wav(&path, samples, 48_000, 2).unwrap();
         let bytes = std::fs::read(&path).unwrap();
         let _ = std::fs::remove_file(&path);
@@ -115,7 +115,7 @@ mod tests {
 
     #[test]
     fn the_header_says_what_the_file_holds() {
-        let path = std::env::temp_dir().join("nrc-wav-header.wav");
+        let path = std::env::temp_dir().join("vace-wav-header.wav");
         write_wav(&path, &[0.0; 8], 48_000, 2).unwrap();
         let bytes = std::fs::read(&path).unwrap();
         let _ = std::fs::remove_file(&path);

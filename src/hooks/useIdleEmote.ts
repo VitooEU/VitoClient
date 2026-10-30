@@ -21,7 +21,7 @@ const CALM_IDLES = [
 ];
 const SPECIAL_IDLE = "/emotes/launcheridle3.animation.json";
 
-const LAST_IDLE_KEY = "nrc-launcher-last-idle";
+const LAST_IDLE_KEY = "vace-launcher-last-idle";
 
 function write(key: string, value: string) {
   try {

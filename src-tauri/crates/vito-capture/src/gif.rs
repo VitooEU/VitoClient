@@ -523,7 +523,7 @@ mod tests {
     #[ignore = "needs a real clip in NRC_TEST_CLIP"]
     fn a_real_clip_turns_into_a_gif_that_starts_with_the_gif_header() {
         let source = std::path::PathBuf::from(std::env::var("NRC_TEST_CLIP").unwrap());
-        let destination = std::env::temp_dir().join("nrc-gif-test.gif");
+        let destination = std::env::temp_dir().join("vace-gif-test.gif");
         let _ = std::fs::remove_file(&destination);
 
         let result = to_gif(&source, &destination, |_, _| {}).unwrap();
