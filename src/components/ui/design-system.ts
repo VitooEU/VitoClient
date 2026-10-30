@@ -257,56 +257,51 @@ export const getToastVariantStyles = (variant: ToastVariant, accentColor: string
   switch (variant) {
     case "success":
       return {
-        backgroundColor: "rgba(16, 185, 129, 0.3)",
-        borderColor: "rgba(16, 185, 129, 0.8)",
-        borderBottomColor: "#059669",
+        backgroundColor: "rgba(16, 185, 129, 0.16)",
+        borderColor: "rgba(16, 185, 129, 0.45)",
         color: "#d1fae5",
       };
     case "error":
       return {
-        backgroundColor: "rgba(239, 68, 68, 0.3)",
-        borderColor: "rgba(239, 68, 68, 0.8)",
-        borderBottomColor: "#dc2626",
+        backgroundColor: "rgba(239, 68, 68, 0.16)",
+        borderColor: "rgba(239, 68, 68, 0.45)",
         color: "#fee2e2",
       };
     default:
       return {
-        backgroundColor: `${accentColor}30`,
-        borderColor: `${accentColor}80`,
-        borderBottomColor: accentColor,
+        backgroundColor: `${accentColor}18`,
+        borderColor: `${accentColor}45`,
         color: "#ffffff",
       };
   }
 };
 
 export const getToastBaseStyles = (config: ToastStyleConfig): React.CSSProperties => {
-  const radiusStyle = createRadiusStyle(config.borderRadius);
   const variantStyles = getToastVariantStyles("default", config.accentColor);
 
   return {
     borderWidth: "1px",
-    borderBottomWidth: "2px",
     borderStyle: "solid",
-    boxShadow: "none",
+    borderRadius: "14px",
+    boxShadow: "0 16px 48px rgba(0,0,0,0.65), 0 1px 0 rgba(255,255,255,0.05) inset",
     padding: "12px 20px",
-    backdropFilter: "blur(8px)",
-    WebkitBackdropFilter: "blur(8px)",
+    backdropFilter: "blur(20px) saturate(1.4)",
+    WebkitBackdropFilter: "blur(20px) saturate(1.4)",
     minWidth: "300px",
     transition: "all 0.2s ease",
     fontWeight: "500",
     ...variantStyles,
-    ...radiusStyle,
   };
 };
 
 export const TOAST_BASE_CLASSES = "font-smallcaps tracking-wider text-shadow-sm";
 
 export const MENU_PANEL_CLASSES =
-  "bg-black/90 backdrop-blur-sm border border-white/20 rounded-lg shadow-xl z-50 overflow-hidden";
+  "bg-[#12141a]/92 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.7),0_1px_0_rgba(255,255,255,0.04)_inset] z-50 overflow-hidden";
 
 export const menuItemClasses = (compact: boolean): string =>
-  `w-full flex items-center gap-2.5 text-left font-minecraft transition-colors duration-150 ${
-    compact ? "px-2.5 py-1.5 text-xs" : "px-4 py-3 text-base"
+  `w-full flex items-center gap-2.5 text-left font-minecraft transition-all duration-150 rounded-xl mx-1 ${
+    compact ? "px-2.5 py-1.5 text-xs hover:bg-white/[0.07]" : "px-3 py-2 text-sm hover:bg-white/[0.06]"
   }`;
 
 export const menuSeparatorClasses = (compact: boolean): string =>

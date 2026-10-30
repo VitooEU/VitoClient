@@ -337,7 +337,7 @@ export function AppLayout({
       ref={launcherRef}
       className="h-screen w-full liquid-glass-shell overflow-hidden relative flex flex-col border border-white/10 shadow-[0_8px_40px_rgba(0,0,0,0.8)]"
       style={{
-        backgroundColor: "#111215",
+        backgroundColor: "#0d0e12",
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundImage: isCustomMediaVisible 
@@ -560,13 +560,13 @@ function HeaderBar({ minimizeRef, maximizeRef, closeRef }: HeaderBarProps) {
             </div>
           </div>
 
-          {/* Center: VitoClient title */}
+          {/* Center: VaceClient title */}
           <div className="absolute left-0 right-0 flex justify-center pointer-events-none" data-tauri-drag-region>
             <h1
               className="font-smallcaps text-2xl tracking-wider font-bold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)] pointer-events-auto"
               data-tauri-drag-region
             >
-              VitoClient
+              VaceClient
             </h1>
           </div>
 
@@ -690,27 +690,27 @@ function WindowControls({
   }
 
   return (
-    <div className="flex items-center gap-1 ml-4">
+    <div className="flex items-center gap-1 ml-4 bg-white/[0.03] border border-white/[0.06] rounded-xl p-0.5">
       <div
         ref={minimizeRef}
-        className="w-10 h-8 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors cursor-pointer rounded"
+        className="w-8 h-7 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/[0.08] transition-all duration-150 cursor-pointer rounded-xl"
         title={t('window.minimize')}
       >
-        <Icon icon="lucide:minus" className="w-4 h-4" />
+        <Icon icon="lucide:minus" className="w-3.5 h-3.5" />
       </div>
       <div
         ref={maximizeRef}
-        className="w-10 h-8 flex items-center justify-center text-white/70 hover:text-white hover:bg-white/10 transition-colors cursor-pointer rounded"
+        className="w-8 h-7 flex items-center justify-center text-white/50 hover:text-white hover:bg-white/[0.08] transition-all duration-150 cursor-pointer rounded-xl"
         title={t('window.maximize')}
       >
-        <Icon icon="lucide:square" className="w-3.5 h-3.5" />
+        <Icon icon="lucide:square" className="w-3 h-3" />
       </div>
       <div
         ref={closeRef}
-        className="w-10 h-8 flex items-center justify-center text-white/70 hover:text-white hover:bg-red-600 transition-colors cursor-pointer rounded"
+        className="w-8 h-7 flex items-center justify-center text-white/50 hover:text-white hover:bg-red-500/25 transition-all duration-150 cursor-pointer rounded-xl"
         title={t('window.close')}
       >
-        <Icon icon="lucide:x" className="w-4 h-4" />
+        <Icon icon="lucide:x" className="w-3.5 h-3.5" />
       </div>
     </div>
   );

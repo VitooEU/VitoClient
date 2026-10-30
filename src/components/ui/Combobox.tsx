@@ -62,7 +62,7 @@ export function Combobox({
         disabled={disabled}
         placeholder={placeholder}
         spellCheck={false}
-        className="w-full rounded-lg border-2 border-[#ffffff20] bg-black/40 px-3 py-2 pr-16 text-base text-white placeholder:text-white/30 outline-none focus:border-white/40 disabled:opacity-40"
+        className="w-full rounded-2xl border border-white/10 bg-[#12141a]/70 backdrop-blur-xl px-4 py-2.5 pr-16 text-base text-white placeholder:text-white/40 outline-none hover:border-white/20 focus:border-white/30 focus:shadow-[0_0_0_2px_rgba(255,255,255,0.06),0_12px_32px_rgba(0,0,0,0.5)] disabled:opacity-40 transition-all shadow-[0_4px_16px_rgba(0,0,0,0.3)]"
         style={inputStyle}
       />
 
@@ -97,7 +97,7 @@ export function Combobox({
       </div>
 
       {open && filtered.length > 0 && (
-        <div className="absolute left-0 right-0 top-full mt-2 max-h-64 overflow-y-auto custom-scrollbar rounded-lg border border-white/20 bg-black/90 backdrop-blur-sm shadow-xl z-50 py-1">
+        <div className="absolute left-0 right-0 top-full mt-2 max-h-64 overflow-y-auto custom-scrollbar rounded-2xl border border-white/10 bg-[#12141a]/92 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.7),0_1px_0_rgba(255,255,255,0.04)_inset] z-50 py-1.5 px-1">
           {filtered.map((opt) => {
             const active = opt === value;
             return (

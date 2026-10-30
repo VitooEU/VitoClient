@@ -82,10 +82,10 @@ export function UserProfileBar({ className }: UserProfileBarProps) {
             });
             toggleFriendsSidebar();
           }}
-          variant="flat"
+          variant="ghost"
           size="sm"
           aria-label={t('header.toggle_friends')}
-          className="text-white/70 hover:text-white h-10 w-10"
+          className="text-white/70 hover:text-white h-10 w-10 glass-button-secondary rounded-xl !border-white/10"
         />
       </div>
     </div>

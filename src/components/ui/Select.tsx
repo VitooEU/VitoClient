@@ -130,20 +130,23 @@ export function Select({
   const colors = getVariantColors();
 
   const getBackgroundColor = () => {
-    const baseOpacity = isHovered || isOpen ? "50" : "30";
-    return `${colors.main}${baseOpacity}`;
+    return isHovered || isOpen ? "rgba(255, 255, 255, 0.08)" : "rgba(255, 255, 255, 0.04)";
   };
 
   const getBorderColor = () => {
-    return isHovered || isOpen ? `${colors.light}` : `${colors.main}80`;
+    return isHovered || isOpen ? "rgba(255, 255, 255, 0.25)" : "rgba(255, 255, 255, 0.10)";
   };
   const getBorderClasses = () => {
     if (variant === "3d") return "border-2 border-b-4";
-    return "border border-b-2";
+    return "border";
   };
 
   const getBoxShadow = () => {
-    if (variant !== "3d") return "none";
+    if (variant !== "3d") {
+      return isOpen
+        ? `0 0 0 2px ${accentColor.value}40, 0 8px 24px rgba(0,0,0,0.3)`
+        : "none";
+    }
 
     return isHovered || isOpen
       ? `0 6px 0 rgba(0,0,0,0.25), 0 8px 12px rgba(0,0,0,0.4), inset 0 1px 0 ${colors.light}40, inset 0 0 0 1px ${colors.main}20`

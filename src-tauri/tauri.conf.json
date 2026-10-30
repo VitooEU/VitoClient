@@ -1,6 +1,6 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "Vito Launcher",
+  "productName": "Vace Launcher",
   "version": "0.6.29",
   "identifier": "gg.vito.VitoClientLauncherV3",
   "build": {
@@ -205,7 +205,7 @@
       {
         "fullscreen": false,
         "resizable": true,
-        "title": "VitoClient",
+        "title": "VaceClient",
         "width": 1280,
         "height": 800,
         "minWidth": 1080,

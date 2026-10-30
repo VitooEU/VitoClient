@@ -79,11 +79,14 @@ export function ToggleSwitch({
     if (trackRef.current) {
       gsap.to(trackRef.current, {
         backgroundColor: checked
-          ? `${accentColor.value}80`
-          : `${accentColor.value}30`,
+          ? accentColor.value
+          : "rgba(255, 255, 255, 0.12)",
         borderColor: checked
-          ? `${accentColor.value}CC`
-          : `${accentColor.value}50`,
+          ? accentColor.value
+          : "rgba(255, 255, 255, 0.18)",
+        boxShadow: checked
+          ? `0 0 16px -2px ${accentColor.value}80`
+          : "none",
         duration: 0.3,
         ease: "power2.inOut",
       });

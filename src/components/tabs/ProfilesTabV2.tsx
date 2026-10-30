@@ -414,7 +414,7 @@ export function ProfilesTabV2() {
                 const nextMode = layoutMode === "list" ? "grid" : layoutMode === "grid" ? "compact" : "list";
                 setProfilesTabLayoutMode(nextMode);
               }}
-              className="flex items-center gap-2 px-4 py-2 bg-black/30 hover:bg-black/40 text-white/70 hover:text-white border border-white/10 hover:border-white/20 rounded-lg font-smallcaps text-base transition-all duration-200 min-h-[2.5rem]"
+              className="flex items-center gap-2 px-3 py-2 glass-button-secondary text-white/80 hover:text-white rounded-2xl font-smallcaps text-base transition-all duration-200 min-h-[2.5rem] active:scale-95"
               title={
                 layoutMode === "list"
                   ? t('profiles.layout.switchToGrid')

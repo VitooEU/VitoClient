@@ -43,7 +43,7 @@ export function ActionButtons({
             key={action.id}
             ref={buttonRefs?.[action.id]}
             onClick={action.onClick}
-            className={`flex items-center ${isIconOnly ? 'justify-center w-8 h-8 p-[1em]' : 'gap-2 px-4 py-2'} bg-black/30 hover:bg-black/40 text-white/70 hover:text-white border border-white/10 hover:border-white/20 rounded-lg font-smallcaps text-base transition-all duration-200`}
+            className={`flex items-center ${isIconOnly ? 'justify-center w-8 h-8 p-[1em]' : 'gap-2 px-4 py-2'} glass-button-secondary text-white/80 hover:text-white rounded-xl font-smallcaps text-base transition-all duration-200 active:scale-95`}
             disabled={action.disabled}
           >
             <div className="w-4 h-4 flex items-center justify-center">

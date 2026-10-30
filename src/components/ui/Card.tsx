@@ -78,7 +78,9 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
       case "secondary":
         return `0 6px 0 rgba(0,0,0,0.25), 0 8px 12px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1), inset 0 0 0 1px rgba(255,255,255,0.05)`;
       default:
-        return "none";
+        return isHovered
+          ? "0 8px 24px rgba(0,0,0,0.45), 0 1px 0 rgba(255,255,255,0.08) inset"
+          : "0 4px 16px rgba(0,0,0,0.35), 0 1px 0 rgba(255,255,255,0.04) inset";
     }
   };
 
@@ -92,44 +94,40 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
       case "flat":
         return "border border-b-2";
       default:
-        return "border border-b-2";
+        return "border";
     }
   };
 
   const getBackgroundColor = () => {
     if (variant === "secondary") {
-      return "rgba(107, 114, 128, 0.2)";
+      return "rgba(255, 255, 255, 0.05)";
     }
 
     if (variant === "flat-secondary") {
-      return "rgba(107, 114, 128, 0.3)";
+      return "rgba(255, 255, 255, 0.07)";
     }
 
-    return `${colors.main}30`;
+    return "rgba(20, 22, 28, 0.65)";
   };
 
   const getBorderColor = () => {
-    if (variant === "secondary") {
-      return "rgba(107, 114, 128, 0.6)";
+    if (variant === "secondary" || variant === "flat-secondary") {
+      return isHovered ? "rgba(255, 255, 255, 0.20)" : "rgba(255, 255, 255, 0.10)";
     }
 
-    if (variant === "flat-secondary") {
-      return "rgba(107, 114, 128, 0.8)";
-    }
-
-    return `${colors.main}80`;
+    return isHovered ? "rgba(255, 255, 255, 0.18)" : "rgba(255, 255, 255, 0.08)";
   };
 
   const getBorderBottomColor = () => {
-    if (variant === "secondary") {
-      return "rgba(75, 85, 99, 1)";
+    if (variant === "secondary" || variant === "flat-secondary") {
+      return isHovered ? "rgba(255, 255, 255, 0.25)" : "rgba(255, 255, 255, 0.10)";
     }
 
-    if (variant === "flat-secondary") {
-      return isHovered ? "rgba(156, 163, 175, 1)" : "rgba(75, 85, 99, 1)";
+    if (variant === "3d") {
+      return isHovered ? colors.light : colors.main;
     }
 
-    return isHovered ? colors.light : colors.main;
+    return isHovered ? "rgba(255, 255, 255, 0.20)" : "rgba(255, 255, 255, 0.08)";
   };  return (
     <div
       ref={mergedRef}

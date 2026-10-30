@@ -184,23 +184,16 @@ export const LoadingState = forwardRef<HTMLDivElement, LoadingStateProps>(
       <div
         ref={mergedRef}
         className={cn(
-          "flex flex-col items-center justify-center space-y-4 rounded-md backdrop-blur-md",
-          shadowDepth !== "none" && "border-2 border-b-4",
+          "flex flex-col items-center justify-center space-y-4 rounded-2xl backdrop-blur-xl border border-white/10 glass-surface shadow-2xl",
           sizeStyles.container,
           className,
         )}
         style={{
-          backgroundColor: `${colors.main}30`,
-          borderColor: `${colors.main}80`,
-          borderBottomColor: colors.dark,
-          boxShadow: getShadowStyle(),
+          backgroundColor: "rgba(16, 18, 24, 0.85)",
+          boxShadow: "0 20px 50px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.08)",
         }}
         {...props}
       >
-        <span
-          className="absolute inset-x-0 top-0 h-[2px] rounded-t-sm"
-          style={{ backgroundColor: `${colors.light}80` }}
-        />
 
         <LoadingSpinner
           variant={variant}

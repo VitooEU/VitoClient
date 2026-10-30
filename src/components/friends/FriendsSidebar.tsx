@@ -92,13 +92,13 @@ export function FriendsSidebar() {
       >
         <div
           className={cn(
-            "h-full flex flex-col transition-all duration-300 ease-out overflow-hidden backdrop-blur-md",
+            "h-full flex flex-col transition-all duration-300 ease-out overflow-hidden backdrop-blur-2xl",
             (activeChatFriend || isSettingsOpen) ? "w-[380px] opacity-100" : "w-0 opacity-0"
           )}
           style={{
-            background: `linear-gradient(135deg, ${accentColor.value}40 0%, ${accentColor.value}30 50%, ${accentColor.value}35 100%)`,
-            borderLeft: (activeChatFriend || isSettingsOpen) ? `2px solid ${accentColor.value}50` : "none",
-            boxShadow: (activeChatFriend || isSettingsOpen) ? `inset 0 0 100px ${accentColor.value}25` : "none",
+            background: "linear-gradient(135deg, rgba(16, 18, 25, 0.94) 0%, rgba(12, 13, 18, 0.96) 100%)",
+            borderLeft: (activeChatFriend || isSettingsOpen) ? "1px solid rgba(255, 255, 255, 0.08)" : "none",
+            boxShadow: (activeChatFriend || isSettingsOpen) ? "-10px 0 30px rgba(0, 0, 0, 0.5), inset 1px 0 0 rgba(255, 255, 255, 0.05)" : "none",
           }}
         >
           {activeChatFriend && <ChatPanel friend={activeChatFriend} />}
@@ -106,26 +106,22 @@ export function FriendsSidebar() {
         </div>
 
         <div
-          className="w-96 h-full flex flex-col backdrop-blur-md"
+          className="w-96 h-full flex flex-col backdrop-blur-2xl"
           style={{
-            background: `linear-gradient(180deg, ${accentColor.value}45 0%, ${accentColor.value}35 30%, ${accentColor.value}40 100%)`,
-            borderLeft: `2px solid ${accentColor.value}60`,
-            boxShadow: `inset 0 0 120px ${accentColor.value}30, -5px 0 20px rgba(0, 0, 0, 0.5)`,
+            background: "linear-gradient(180deg, rgba(16, 18, 25, 0.95) 0%, rgba(12, 13, 18, 0.97) 100%)",
+            borderLeft: "1px solid rgba(255, 255, 255, 0.1)",
+            boxShadow: "-12px 0 40px rgba(0, 0, 0, 0.7), inset 1px 0 0 rgba(255, 255, 255, 0.05)",
           }}
         >
-          <div className="p-4" style={{ borderBottom: `1px solid ${accentColor.value}30` }}>
+          <div className="p-4 border-b border-white/[0.08]">
             <div className="flex items-center justify-between mb-4">
               <div className="flex items-center gap-3">
                 <button
                   onClick={openSettings}
-                  className="p-2 rounded-full transition-all duration-200 hover:scale-105"
-                  style={{
-                    backgroundColor: isSettingsOpen ? `${accentColor.value}40` : `${accentColor.value}20`,
-                    border: `1px solid ${isSettingsOpen ? `${accentColor.value}70` : `${accentColor.value}50`}`,
-                  }}
+                  className="p-2 rounded-xl transition-all duration-200 hover:scale-105 glass-button-secondary"
                   title={t('common.settings')}
                 >
-                  <Icon icon="solar:settings-bold" className="w-5 h-5" style={{ color: accentColor.value }} />
+                  <Icon icon="solar:settings-bold" className="w-5 h-5 text-white/80" />
                 </button>
                 <h2 className="text-lg font-bold text-white font-minecraft uppercase tracking-wide">
                   {t('friends.title')}
@@ -134,8 +130,7 @@ export function FriendsSidebar() {
               <div className="flex items-center gap-2">
                 <button
                   onClick={() => { loadFriends(true); loadPendingRequests(); }}
-                  className="p-2 rounded-full transition-all duration-200 hover:scale-105"
-                  style={{ backgroundColor: `${accentColor.value}20`, border: `1px solid ${accentColor.value}50`, color: accentColor.value }}
+                  className="p-2 rounded-xl transition-all duration-200 hover:scale-105 glass-button-secondary text-white/80 hover:text-white"
                   title={t('common.refresh')}
                 >
                   <Icon icon="solar:refresh-bold" className="w-5 h-5" />
@@ -145,20 +140,17 @@ export function FriendsSidebar() {
                     toggleNotifications();
                     toast.info(notificationsEnabled ? t('friends.notifications_disabled') : t('friends.notifications_enabled'));
                   }}
-                  className="p-2 rounded-full transition-all duration-200 hover:scale-105"
-                  style={{
-                    backgroundColor: notificationsEnabled ? `${accentColor.value}20` : "rgba(239, 68, 68, 0.2)",
-                    border: `1px solid ${notificationsEnabled ? `${accentColor.value}50` : "rgba(239, 68, 68, 0.5)"}`,
-                    color: notificationsEnabled ? accentColor.value : "#ef4444",
-                  }}
+                  className={cn(
+                    "p-2 rounded-xl transition-all duration-200 hover:scale-105 glass-button-secondary",
+                    notificationsEnabled ? "text-white/80 hover:text-white" : "text-red-400 border-red-500/30"
+                  )}
                   title={notificationsEnabled ? t('friends.disable_notifications') : t('friends.enable_notifications')}
                 >
                   <Icon icon={notificationsEnabled ? "solar:bell-bold" : "solar:bell-off-bold"} className="w-5 h-5" />
                 </button>
                 <button
                   onClick={handleClose}
-                  className="p-2 rounded-full transition-all duration-200 hover:scale-105"
-                  style={{ backgroundColor: `${accentColor.value}20`, border: `1px solid ${accentColor.value}50`, color: accentColor.value }}
+                  className="p-2 rounded-xl transition-all duration-200 hover:scale-105 glass-button-secondary text-white/80 hover:text-white"
                   title={t('common.close')}
                 >
                   <Icon icon="solar:close-circle-bold" className="w-5 h-5" />
@@ -168,10 +160,9 @@ export function FriendsSidebar() {
 
           </div>
 
-          <div className="p-3" style={{ borderBottom: `1px solid ${accentColor.value}30` }}>
+          <div className="p-3 border-b border-white/[0.08]">
             <div
-              className="flex rounded-xl p-1"
-              style={{ backgroundColor: `${accentColor.value}15`, border: `1px solid ${accentColor.value}40` }}
+              className="flex rounded-xl p-1 bg-white/[0.04] border border-white/[0.06]"
             >
               <button
                 onClick={() => setActiveTab("friends")}

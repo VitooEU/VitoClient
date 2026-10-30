@@ -87,7 +87,7 @@ export function SearchWithFilters({
     <div className={`flex items-center gap-4 ${className}`}>
       {/* Search with integrated filters */}
       <div
-        className={`flex items-center gap-2 bg-[#18191e] rounded-xl border border-white/10 hover:border-white/20 transition-all shadow-[0_2px_12px_rgba(0,0,0,0.2)] ${
+        className={`flex items-center gap-2 bg-[#12141a]/70 backdrop-blur-xl rounded-2xl border border-white/10 hover:border-white/20 focus-within:border-white/30 focus-within:shadow-[0_0_0_2px_rgba(255,255,255,0.06),0_12px_32px_rgba(0,0,0,0.5)] transition-all shadow-[0_8px_24px_rgba(0,0,0,0.4)] ${
           compact ? "px-3 py-2 w-full" : "px-4 py-2.5 flex-1 max-w-md"
         }`}
       >

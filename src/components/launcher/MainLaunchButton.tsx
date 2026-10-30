@@ -202,7 +202,7 @@ export function MainLaunchButton({
             size="xl"
             icon={undefined}
             variant={getButtonVariant()}
-            className={cn("flex-1 rounded-r-none", mainButtonWidth)}
+            className={cn("flex-1 rounded-r-none !rounded-l-2xl glass-button-primary", mainButtonWidth)}
             heightClassName={mainButtonHeight}
           >
             {renderLaunchButtonContent()}
@@ -212,7 +212,7 @@ export function MainLaunchButton({
             onClick={handleOpenModal}
             disabled={isButtonLaunching || !versions || versions.length === 0}
             size="xl"
-            className={cn("rounded-l-none border-l-0", mainButtonHeight)}
+            className={cn("rounded-l-none border-l-0 !rounded-r-2xl glass-button-primary !px-4", mainButtonHeight)}
             icon={
               <Icon icon="solar:alt-arrow-down-bold" width="24" height="24" />
             }

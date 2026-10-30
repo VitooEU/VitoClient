@@ -155,10 +155,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       }
 
       if (variant === "flat" || variant === "flat-secondary") {
-        return `${colors.main}30`;
+        return `${colors.main}25`;
       }
 
-      const baseOpacity = isHovered ? "50" : "30";
+      const baseOpacity = isHovered ? "40" : "25";
       return `${colors.main}${baseOpacity}`;
     };    const getBorderColor = () => {
       if (variant === "ghost") {
@@ -166,10 +166,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       }
 
       if (variant === "flat" || variant === "flat-secondary") {
-        return `${colors.main}80`;
+        return `${colors.main}60`;
       }
 
-      return isHovered ? colors.light : `${colors.main}80`;
+      return isHovered ? colors.light : `${colors.main}60`;
     };
 
     const getBorderBottomColor = () => {
@@ -177,16 +177,18 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         return "transparent";
       }
 
-      if (variant === "flat" || variant === "flat-secondary") {
+      if (variant === "3d") {
         return isHovered ? colors.light : colors.dark;
       }
 
-      return isHovered ? colors.light : colors.dark;
+      return isHovered ? colors.light : `${colors.main}60`;
     };
 
     const getBoxShadow = () => {
       if (variant !== "3d" || shadowDepth === "none") {
-        return "none";
+        return isHovered
+          ? `0 4px 16px ${colors.main}30, inset 0 1px 0 rgba(255,255,255,0.15)`
+          : `0 2px 8px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.1)`;
       }
 
       const part1Y = shadowDepth === "short" ? "4px" : "8px";
@@ -198,14 +200,14 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     const getBorderClasses = () => {
       if (variant === "ghost") {
-        return "";
+        return "border border-transparent";
       }
 
       if (variant === "3d") {
         return shadowDepth === "none" ? "border-2" : "border-2 border-b-4";
       }
 
-      return "border border-b-2";
+      return "border";
     };
 
     const getTextColor = () => {

@@ -127,20 +127,23 @@ export const Checkbox = forwardRef<HTMLButtonElement, CheckboxProps>(  ({
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
             onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}className={cn(
-              "relative flex-shrink-0 flex items-center justify-center backdrop-blur-md",
-              "transition-all duration-200 border-2 bg-white/10",
-              "focus:outline-none focus:ring-2 focus:ring-white/30",
+            onMouseLeave={() => setIsHovered(false)}
+            className={cn(
+              "relative flex-shrink-0 flex items-center justify-center backdrop-blur-xl",
+              "transition-all duration-200 border bg-white/[0.04]",
+              "focus:outline-none focus:ring-2 focus:ring-white/20",
               radiusClass,
               checkboxSizes[effectiveSize],
               disabled && "opacity-50 cursor-not-allowed",
-              !disabled && "cursor-pointer hover:bg-white/20",
-              checked || indeterminate ? "bg-opacity-80" : "bg-opacity-30",
-            )}            style={{
-              borderColor: checked || indeterminate ? colors.main : "rgba(255,255,255,0.3)",
-              backgroundColor: checked || indeterminate ? `${colors.main}80` : "rgba(255,255,255,0.1)",
-              filter: isHovered && !disabled ? "brightness(1.1)" : "brightness(1)",
-              transform: isHovered && !disabled ? "scale(1.05)" : "scale(1)",              ...createRadiusStyle(borderRadius),
+              !disabled && "cursor-pointer hover:bg-white/[0.08]",
+            )}
+            style={{
+              borderColor: checked || indeterminate ? colors.main : "rgba(255,255,255,0.15)",
+              backgroundColor: checked || indeterminate ? colors.main : "rgba(255,255,255,0.04)",
+              boxShadow: checked || indeterminate ? `0 0 14px -2px ${colors.main}80, 0 1px 0 rgba(255,255,255,0.2) inset` : "0 1px 0 rgba(255,255,255,0.05) inset",
+              filter: isHovered && !disabled ? "brightness(1.08)" : "brightness(1)",
+              transform: isHovered && !disabled ? "scale(1.05)" : "scale(1)",
+              ...createRadiusStyle(borderRadius),
             }}
           >
             {(checked || indeterminate) && (

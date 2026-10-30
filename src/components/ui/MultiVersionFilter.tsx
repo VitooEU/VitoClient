@@ -83,8 +83,8 @@ export function MultiVersionFilter({
 
       {/* Dropdown menu */}
       {isOpen && (
-        <div className="absolute top-full left-0 mt-2 w-56 bg-black/90 backdrop-blur-sm border border-white/20 rounded-lg shadow-xl z-50 overflow-hidden">
-          <div className="flex items-center justify-between px-3 py-2 border-b border-white/10">
+        <div className="absolute top-full left-0 mt-2 w-56 bg-[#12141a]/92 backdrop-blur-xl border border-white/10 rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.7),0_1px_0_rgba(255,255,255,0.04)_inset] z-50 overflow-hidden py-1 px-1">
+          <div className="flex items-center justify-between px-3 py-2 border-b border-white/[0.08]">
             <span className="text-white/60 font-minecraft text-xs lowercase">{t("profiles.filter.versions")}</span>
             {isActive && (
               <button

@@ -40,7 +40,7 @@ export const SearchStyleInput = forwardRef<HTMLInputElement, SearchStyleInputPro
 
     return (
       <div className="w-full">
-        <div className="flex items-center gap-2 bg-black/50 rounded-lg px-4 py-3 border border-white/10 hover:border-white/20 transition-colors">
+        <div className="flex items-center gap-2 bg-[#12141a]/70 backdrop-blur-xl rounded-2xl px-4 py-3 border border-white/10 hover:border-white/20 focus-within:border-white/30 focus-within:shadow-[0_0_0_2px_rgba(255,255,255,0.06),0_12px_32px_rgba(0,0,0,0.5)] transition-all shadow-[0_4px_16px_rgba(0,0,0,0.3)]">
           {icon && (
             <Icon icon={icon} className="w-4 h-4 text-white/50 flex-shrink-0" />
           )}
@@ -82,7 +82,7 @@ export const SearchStyleTextArea = forwardRef<HTMLTextAreaElement, SearchStyleTe
   ({ className, placeholder = "Enter text...", icon, error, minHeight = "100px", ...props }, ref) => {
     return (
       <div className="w-full">
-        <div className="flex items-start gap-2 bg-black/50 rounded-lg px-4 py-3 border border-white/10 hover:border-white/20 transition-colors">
+        <div className="flex items-start gap-2 bg-[#12141a]/70 backdrop-blur-xl rounded-2xl px-4 py-3 border border-white/10 hover:border-white/20 focus-within:border-white/30 focus-within:shadow-[0_0_0_2px_rgba(255,255,255,0.06),0_12px_32px_rgba(0,0,0,0.5)] transition-all shadow-[0_4px_16px_rgba(0,0,0,0.3)]">
           {icon && (
             <Icon icon={icon} className="w-4 h-4 text-white/50 flex-shrink-0 mt-1" />
           )}
@@ -196,22 +196,26 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             className,
           )}
           style={{
-            backgroundColor: `${accentColor.value}${isHovered || isFocused ? "50" : "30"}`,
+            backgroundColor: isHovered || isFocused ? "rgba(255, 255, 255, 0.08)" : "rgba(255, 255, 255, 0.04)",
             borderColor: error
               ? "rgba(239, 68, 68, 0.6)"
-              : `${accentColor.value}${isHovered || isFocused ? "90" : "80"}`,
+              : isHovered || isFocused
+                ? "rgba(255, 255, 255, 0.25)"
+                : "rgba(255, 255, 255, 0.10)",
             borderBottomColor: error
               ? "rgb(185, 28, 28)"
               : isHovered || isFocused
-                ? accentColor.hoverValue
-                : accentColor.value,
+                ? accentColor.value
+                : "rgba(255, 255, 255, 0.15)",
             boxShadow:
-              variant === "3d"
-                ? `0 4px 0 rgba(0,0,0,0.3), 0 6px 10px rgba(0,0,0,0.35)`
-                : "none",
+              isFocused
+                ? `0 0 0 2px ${accentColor.value}40, 0 8px 24px rgba(0,0,0,0.3)`
+                : variant === "3d"
+                  ? `0 4px 0 rgba(0,0,0,0.3), 0 6px 10px rgba(0,0,0,0.35)`
+                  : "none",
             filter:
               (isFocused || isHovered) && !props.disabled
-                ? "brightness(1.1)"
+                ? "brightness(1.05)"
                 : "brightness(1)",
             ...createRadiusStyle(borderRadius),
           }}

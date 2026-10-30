@@ -84,46 +84,32 @@ export function ActionButton({
   const getButtonStyles = () => {
     const baseClasses = (effectiveVariant === "text" || effectiveVariant === "highlight")
       ? `transition-all duration-200 font-smallcaps flex items-center gap-2 ${getSizeClasses()}`
-      : `transition-all duration-200 hover:scale-105 border font-smallcaps rounded-lg flex items-center gap-2 ${getSizeClasses()}`;
+      : `transition-all duration-200 hover:scale-105 font-smallcaps rounded-xl flex items-center gap-2 active:scale-95 ${getSizeClasses()}`;
     
     switch (effectiveVariant) {
       case "primary":
         return {
-          className: `${baseClasses} text-white`,
-          style: {
-            backgroundColor: `${accentColor.value}20`,
-            borderColor: `${accentColor.value}60`,
-            color: 'white',
-          },
-          onMouseEnter: (e: React.MouseEvent<HTMLButtonElement>) => {
-            if (!disabled) {
-              e.currentTarget.style.backgroundColor = `${accentColor.value}30`;
-              e.currentTarget.style.borderColor = `${accentColor.value}80`;
-            }
-          },
-          onMouseLeave: (e: React.MouseEvent<HTMLButtonElement>) => {
-            if (!disabled) {
-              e.currentTarget.style.backgroundColor = `${accentColor.value}20`;
-              e.currentTarget.style.borderColor = `${accentColor.value}60`;
-            }
-          },
+          className: `${baseClasses} text-white glass-button-primary`,
+          style: {},
+          onMouseEnter: undefined,
+          onMouseLeave: undefined,
         };
       
       case "secondary":
         return {
-          className: `${baseClasses} bg-black/30 hover:bg-black/40 text-white/70 hover:text-white border-white/10 hover:border-white/20`,
+          className: `${baseClasses} glass-button-secondary text-white/80 hover:text-white`,
           style: {},
         };
       
       case "icon-only":
         return {
-          className: `${baseClasses} bg-black/30 hover:bg-black/40 text-white/70 hover:text-white justify-center border-white/10 hover:border-white/20`,
+          className: `${baseClasses} glass-button-secondary text-white/80 hover:text-white justify-center`,
           style: {},
         };
       
       case "destructive":
         return {
-          className: `${baseClasses} bg-red-600/20 hover:bg-red-600/30 text-white hover:text-white border-red-500/30 hover:border-red-500/50`,
+          className: `${baseClasses} bg-red-600/20 hover:bg-red-600/30 text-red-200 hover:text-white border border-red-500/30 hover:border-red-500/50 backdrop-blur-md shadow-[0_2px_10px_rgba(239,68,68,0.2)]`,
           style: {},
         };
       

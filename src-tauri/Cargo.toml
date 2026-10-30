@@ -1,10 +1,10 @@
 [package]
-name = "VTC"
+name = "VaceClient"
 version = "0.6.29"
 description = "A Tauri App"
-authors = ["Vito"]
+authors = ["Vace"]
 edition = "2021"
-default-run = "VTC"
+default-run = "VaceClient"
 
 [workspace]
 members = ["crates/vito-ipc", "crates/vito-logging", "crates/vito-capture"]
@@ -34,7 +34,7 @@ crate-type = ["staticlib", "cdylib", "rlib"]
 tauri-build = { version = "2", features = [] }
 
 [[bin]]
-name = "VTC"
+name = "VaceClient"
 path = "src/main.rs"
 
 [dependencies]

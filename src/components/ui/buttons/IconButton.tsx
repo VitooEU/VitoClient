@@ -169,10 +169,10 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
       }
 
       if (variant === "flat" || variant === "flat-secondary") {
-        return `${colors.main}30`;
+        return isHovered ? `rgba(255, 255, 255, 0.10)` : `rgba(255, 255, 255, 0.05)`;
       }
 
-      const baseOpacity = isHovered ? "50" : "30";
+      const baseOpacity = isHovered ? "40" : "25";
       return `${colors.main}${baseOpacity}`;
     };
 
@@ -185,10 +185,10 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
       }
 
       if (variant === "flat" || variant === "flat-secondary") {
-        return `${colors.main}80`;
+        return isHovered ? `rgba(255, 255, 255, 0.20)` : `rgba(255, 255, 255, 0.10)`;
       }
 
-      return isHovered ? `${colors.light}` : `${colors.main}80`;
+      return isHovered ? `${colors.light}` : `${colors.main}60`;
     };
 
     const getBorderBottomColor = () => {
@@ -199,21 +199,26 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
         return "transparent";
       }
 
-      if (variant === "flat" || variant === "flat-secondary") {
+      if (variant === "3d") {
         return isHovered ? colors.light : colors.dark;
       }
 
-      return isHovered ? colors.light : colors.dark;
+      return isHovered ? colors.light : `${colors.main}60`;
     };
 
     const getBoxShadow = () => {
       if (
         displayVariant === "ghost" ||
         displayVariant === "themed-surface" ||
-        variant !== "3d" ||
         shadowDepth === "none"
       ) {
         return "none";
+      }
+
+      if (variant !== "3d") {
+        return isHovered
+          ? `0 4px 16px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.12)`
+          : `0 2px 8px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.06)`;
       }
 
       const part1Y = shadowDepth === "short" ? "4px" : "8px";
@@ -225,18 +230,18 @@ export const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
 
     const getBorderClasses = () => {
       if (displayVariant === "ghost" || displayVariant === "themed-surface") {
-        return "";
+        return "border border-transparent";
       }
 
       if (variant === "ghost") {
-        return "";
+        return "border border-transparent";
       }
 
       if (variant === "3d") {
         return shadowDepth === "none" ? "border-2" : "border-2 border-b-4";
       }
 
-      return "border border-b-2";
+      return "border";
     };
 
     const getShadowClasses = () => {

@@ -105,9 +105,9 @@ export function ThemedSurface({
       role={role || (onClick ? "button" : undefined)}
       tabIndex={onClick ? 0 : undefined}
       className={cn(
-        "relative p-3 transition-colors duration-200 w-full select-none",
+        "relative p-3 transition-colors duration-200 w-full select-none backdrop-blur-md",
         radiusClass,
-        "border-2",
+        "border",
         alwaysActive
           ? "bg-[var(--surface-bg-hover)]"
           : "bg-[var(--surface-bg-default)] hover:bg-[var(--surface-bg-hover)]",

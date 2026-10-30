@@ -121,38 +121,23 @@ export function Modal({
   return (
     <div
       ref={modalRef}
-      className="fixed inset-0 z-[1000] flex items-center justify-center p-4 bg-black/70 backdrop-blur-md-anyos"
+      className="fixed inset-0 z-[1000] flex items-center justify-center p-4 bg-black/75 backdrop-blur-md"
       onClick={handleBackdropClick}
     >
       <div
         className={cn(
-          "relative flex flex-col w-full rounded-lg overflow-hidden max-h-[90vh]",
-          getBorderClasses(),
-          variant === "3d" ? "shadow-2xl" : "",
+          "relative flex flex-col w-full rounded-2xl overflow-hidden max-h-[90vh] glass-surface shadow-2xl border border-white/10",
           widthClasses[width],
           className,
         )}
         style={{
-          backgroundColor: `${accentColor.value}20`,
-          borderColor: `${accentColor.value}80`,
-          borderBottomColor: accentColor.value,
-          boxShadow: getBoxShadow(),
+          backgroundColor: "rgba(16, 18, 24, 0.88)",
+          boxShadow: "0 24px 60px rgba(0, 0, 0, 0.7), 0 1px 0 rgba(255, 255, 255, 0.08) inset",
         }}
       >
-        {variant === "3d" && (
-          <span
-            className="absolute inset-x-0 top-0 h-[2px] rounded-t-sm"
-            style={{ backgroundColor: `${accentColor.value}80` }}
-          />
-        )}
-
         <div
           ref={headerRef}
-          className="flex items-center justify-between px-6 py-4 border-b-2 flex-shrink-0"
-          style={{
-            borderColor: `${accentColor.value}60`,
-            backgroundColor: `${accentColor.value}30`,
-          }}
+          className="flex items-center justify-between px-6 py-4 border-b border-white/[0.08] bg-white/[0.02] flex-shrink-0"
         >
           <div className="flex items-center space-x-3">
             {titleIcon && (

@@ -395,12 +395,12 @@ export function SettingsTab({ onClose }: SettingsTabProps) {
                 <div key={tab.id}>
                   <button
                     className={cn(
-                      "w-full text-left px-3 py-2.5 rounded-lg transition-colors border-0 outline-none flex items-center gap-3",
+                      "w-full text-left px-3 py-2.5 rounded-xl transition-all duration-200 border-0 outline-none flex items-center gap-3",
                       isActive
-                        ? "text-white"
-                        : "bg-transparent text-white/60 hover:bg-white/5 hover:text-white/90",
+                        ? "text-white bg-white/[0.08] shadow-[0_2px_8px_rgba(0,0,0,0.2)]"
+                        : "bg-transparent text-white/60 hover:bg-white/[0.05] hover:text-white/90",
                     )}
-                    style={isActive ? { backgroundColor: `${accentColor.value}26` } : undefined}
+                    style={isActive ? { borderLeft: `3px solid ${accentColor.value}` } : undefined}
                     onClick={() => selectTab(tab.id)}
                   >
                     <Icon

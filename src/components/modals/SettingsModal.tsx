@@ -29,10 +29,11 @@ export function SettingsModal() {
           isOpen ? "translate-x-0" : "translate-x-full"
         )}
         style={{
-          background: `linear-gradient(180deg, ${accentColor.value}45 0%, ${accentColor.value}25 30%, ${accentColor.value}30 100%)`,
-          borderLeft: `2px solid ${accentColor.value}60`,
-          boxShadow: `inset 0 0 120px ${accentColor.value}20, -5px 0 30px rgba(0,0,0,0.6)`,
-          backdropFilter: "blur(16px)",
+          background: "linear-gradient(180deg, rgba(16, 18, 25, 0.96) 0%, rgba(12, 13, 18, 0.98) 100%)",
+          borderLeft: "1px solid rgba(255, 255, 255, 0.1)",
+          boxShadow: "-12px 0 40px rgba(0, 0, 0, 0.7), inset 1px 0 0 rgba(255, 255, 255, 0.05)",
+          backdropFilter: "blur(24px) saturate(1.4)",
+          WebkitBackdropFilter: "blur(24px) saturate(1.4)",
         }}
       >
         {isOpen && <SettingsTab onClose={close} />}

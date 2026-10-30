@@ -133,13 +133,12 @@ export function GlobalToaster() {
       <HotToaster
         position="bottom-right"
         toastOptions={{
-          className: `${TOAST_BASE_CLASSES} ${borderRadiusClass}`,
+          className: `${TOAST_BASE_CLASSES}`,
           style: baseStyles,
           success: {
             style: {
+              ...baseStyles,
               ...getToastVariantStyles("success", accentColor.value),
-              boxShadow: "none",
-              ...borderRadiusStyle,
             },
             iconTheme: {
               primary: "#059669",
@@ -148,9 +147,8 @@ export function GlobalToaster() {
           },
           error: {
             style: {
+              ...baseStyles,
               ...getToastVariantStyles("error", accentColor.value),
-              boxShadow: "none",
-              ...borderRadiusStyle,
             },
             iconTheme: {
               primary: "#dc2626",
@@ -159,9 +157,8 @@ export function GlobalToaster() {
           },
           loading: {
             style: {
+              ...baseStyles,
               ...getToastVariantStyles("default", accentColor.value),
-              boxShadow: "none",
-              ...borderRadiusStyle,
             },
             iconTheme: {
               primary: accentColor.value,
