@@ -166,7 +166,7 @@ async fn main() {
         eprintln!("FEHLER: Logging konnte nicht initialisiert werden: {}", e);
     }
 
-    info!("Starting VitoClient Launcher...");
+    info!("Starting VaceClient Launcher...");
 
     tauri::Builder::default()
         .plugin(tauri_plugin_process::init())
@@ -223,14 +223,14 @@ async fn main() {
             }
 
             // --- Initialize System Tray (Tauri 2.0) ---
-            let show_item = MenuItem::with_id(app, "show", "Show Vito Launcher", true, None::<&str>)?;
+            let show_item = MenuItem::with_id(app, "show", "Show Vace Launcher", true, None::<&str>)?;
             let quit_item = MenuItem::with_id(app, "quit", "Quit", true, None::<&str>)?;
             let menu = Menu::with_items(app, &[&show_item, &quit_item])?;
 
             let _tray = TrayIconBuilder::new()
                 .menu(&menu)
                 .show_menu_on_left_click(false)
-                .tooltip("Vito Client Launcher")
+                .tooltip("Vace Client Launcher")
                 .icon(app.default_window_icon().unwrap().clone())
                 .on_menu_event(|app, event| match event.id.as_ref() {
                     "show" => {
@@ -393,7 +393,7 @@ async fn main() {
                             .dialog()
                             .message(
                                 [
-                                    "The Vito Launcher could not start.".to_string(),
+                                    "The Vace Launcher could not start.".to_string(),
                                     String::new(),
                                     e.to_string(),
                                     String::new(),
@@ -410,7 +410,7 @@ async fn main() {
                                 .join("\n"),
                             )
                             .kind(MessageDialogKind::Error)
-                            .title("Vito Launcher - Startup Failed")
+                            .title("Vace Launcher - Startup Failed")
                             .buttons(MessageDialogButtons::OkCancelCustom(
                                 "Reset database and restart".to_string(),
                                 "Quit".to_string(),
@@ -429,7 +429,7 @@ async fn main() {
                                         .dialog()
                                         .message(format!("{}", err))
                                         .kind(MessageDialogKind::Error)
-                                        .title("Vito Launcher - Reset Failed")
+                                        .title("Vace Launcher - Reset Failed")
                                         .blocking_show();
                                 }
                             }
@@ -525,11 +525,11 @@ async fn main() {
                                 use tauri_plugin_dialog::{DialogExt, MessageDialogKind};
                                 let _ = state_init_app_handle
                                     .dialog()
-                                    .message("The Vito Launcher encountered a critical error.\n\n\
+                                    .message("The Vace Launcher encountered a critical error.\n\n\
                                         Please join our Discord for support:\n\
                                         https://discord.norisk.gg")
                                     .kind(MessageDialogKind::Error)
-                                    .title("Vito Launcher - Critical Error")
+                                    .title("Vace Launcher - Critical Error")
                                     .blocking_show();
                             }
 
@@ -544,11 +544,11 @@ async fn main() {
                         use tauri_plugin_dialog::{DialogExt, MessageDialogKind};
                         let _ = state_init_app_handle
                             .dialog()
-                            .message("The Vito Launcher encountered a critical error.\n\n\
+                            .message("The Vace Launcher encountered a critical error.\n\n\
                                 Please join our Discord for support:\n\
                                 https://discord.norisk.gg")
                             .kind(MessageDialogKind::Error)
-                            .title("Vito Launcher - Critical Error")
+                            .title("Vace Launcher - Critical Error")
                             .blocking_show();
                     }
 

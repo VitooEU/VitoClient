@@ -592,7 +592,7 @@ function HeaderBar({ minimizeRef, maximizeRef, closeRef }: HeaderBarProps) {
                     className="font-smallcaps text-2xl tracking-wider font-bold text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]"
                     data-tauri-drag-region
                   >
-                    VitoClient
+                    VaceClient
                   </h1>
                   {availableUpdate && (
                     <Tooltip content={isUpdating ? t('header.update.tooltip_updating') : t('header.update.tooltip_available', { version: availableUpdate.version })}>
